@@ -18,6 +18,8 @@
 	            <div class="white-box">
 	                <div class="table-responsive">
 	                   <?php echo form_open('admin/insert_jenis_perusahaan', array('enctype'=>'multipart/form-data')); ?>
+	                     <?php echo validation_errors(); ?> 
+	                     
 						<table class="table table-responsive">
 							<tr>
 								<td>Jenis Perusahaan</td>

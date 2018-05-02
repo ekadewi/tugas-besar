@@ -18,6 +18,7 @@
 	            <div class="white-box">
 	                <div class="table-responsive">
 	                   <?php echo form_open('admin/insert_member', array('enctype'=>'multipart/form-data')); ?>
+	                   <?php echo validation_errors(); ?>
 						<table class="table table-responsive">
 							<tr>
 								<td>Nama</td>

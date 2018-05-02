@@ -21,14 +21,19 @@ class Admin extends CI_Controller {
 
 	public function insert_jenis_perusahaan()
 	{
-		$this->load->model('dataAdmin');
+		
 
-		if ($this->input->post('simpan')) {
-			$this->dataAdmin->insert_jenis();
+		$this->load->model('dataAdmin');
+	$this->form_validation->set_rules('jenis_perusahaan','jenis_perusahaan', 'trim|required');
+if($this->form_validation->run()==False){
+		$this->load->view('admin/insert_jenis');
+		}else{
+		$this->dataAdmin->insert_jenis();
 			redirect('admin/jenis_perusahaan');
 		}
 
-		$this->load->view('admin/insert_jenis');
+
+	
 	}
 
 	public function update_jenis_perusahaan($id) {
@@ -60,11 +65,21 @@ class Admin extends CI_Controller {
 	public function insert_member()
 	{
 		$this->load->model('dataAdmin');
-		$data = array();
 
-		if ($this->input->post('simpan')) {
+			$data = array();
+
+					$this->form_validation->set_rules('nama','nama', 'trim|required');
+			$this->form_validation->set_rules('jk','jk', 'trim|required');
+			$this->form_validation->set_rules('tanggal_lahir','tanggal_lahir', 'trim|required');
+			$this->form_validation->set_rules('agama','agama', 'trim|required');
+			$this->form_validation->set_rules('alamat','alamat', 'trim|required');
+			$this->form_validation->set_rules('no_telp','no_telp', 'trim|required');
+			$this->form_validation->set_rules('email','email', 'trim|required');
+		if($this->form_validation->run()==False){
+		
+		$this->load->view('admin/insert_member', $data);
+		}else{
 			$upload = $this->dataAdmin->upload();
-
 			if ($upload['result'] == 'success') {
 				$this->dataAdmin->insert_member($upload);
 				redirect('admin/member');
@@ -72,8 +87,6 @@ class Admin extends CI_Controller {
 				$data['message'] = $upload['error'];
 			}
 		}
-
-		$this->load->view('admin/insert_member', $data);
 	}
 
 	public function delete_member($id)
