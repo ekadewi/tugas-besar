@@ -23,42 +23,54 @@
 							<tr>
 								<td>Nama</td>
 								<td>:</td>
-								<td><input type="text" name="nama" style="width: 500px;"></td>
+								<td><input type="text" name="nama" style="width: 500px;" value="<?php echo set_value('nama'); ?>"></td>
 							</tr>
 							<tr>
 								<td>Jenis Kelamin</td>
 								<td>:</td>
-								<td><input type="text" name="jk" style="width: 100px;"></td>
+								<td>
+									<input type="radio" value="L" name="jk"/>
+			                        <label class="gender">Laki-Laki</label>
+			                        <input type="radio" value="P" name="jk"/>
+			                        <label class="gender">Perempuan</label>
+                    			</td>
 							</tr>
 							<tr>
 								<td>Tanggal Lahir</td>
 								<td>:</td>
-								<td><input type="date" name="tanggal_lahir" style="width: 500px;"></td>
+								<td><input type="date" name="tanggal_lahir" style="width: 500px;" value="<?php echo set_value('tanggal_lahir'); ?>"></td>
 							</tr>
 							<tr>
 								<td>Agama</td>
 								<td>:</td>
-								<td><input type="text" name="agama" style="width: 500px;"></td>
+								<td>
+									<select name="agama" id="inputAgama" class="">
+			                            <option value="islam">Islam</option>
+			                            <option value="kristen">Kristen</option>
+			                            <option value="budha">Budha</option>
+			                            <option value="hindu">Hindu</option>
+			                        </select>
+								</td>
 							</tr>
 							<tr>
 								<td>Alamat</td>
 								<td>:</td>
-								<td><input type="text" name="alamat" style="width: 800px;"></td>
+								<td><input type="text" name="alamat" style="width: 800px;" value="<?php echo set_value('alamat'); ?>"></td>
 							</tr>
 							<tr>
 								<td>No Telp</td>
 								<td>:</td>
-								<td><input type="text" name="no_telp" style="width: 500px;"></td>
+								<td><input type="text" name="no_telp" style="width: 500px;" value="<?php echo set_value('no_telp'); ?>"></td>
 							</tr>
 							<tr>
 								<td>Email</td>
 								<td>:</td>
-								<td><input type="text" name="email" style="width: 500px;"></td>
+								<td><input type="text" name="email" style="width: 500px;" value="<?php echo set_value('email'); ?>"></td>
 							</tr>
 							<tr>
 								<td>Foto</td>
 								<td>:</td>
-								<td><input type="file" name="foto"></td>
+								<td><input type="file" name="foto" value="<?php echo set_value('foto'); ?>"></td>
 							</tr>
 							<tr class="text-center">
 								<td colspan="3"><input type="submit" name="simpan" value="simpan" class="btn btn-primary"></td>

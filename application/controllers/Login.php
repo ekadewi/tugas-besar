@@ -3,6 +3,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends CI_Controller {
 
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->model('dataLogin');
+	}
+
 	public function index()
 	{
 		$this->load->view('login/login');
@@ -35,6 +41,48 @@ class Login extends CI_Controller {
 		}
 
 		$this->load->view('login/daftarMember', $data);
+	}
+
+	public function cek_login()
+	{
+		$username = $this->input->post('username');
+		$password = $this->input->post('password');
+		$where = array(
+			'username' => $username,
+		 	'password' => $password
+		);
+		die();
+		$cek = $this->dataLogin->cek_login("user",$where)->num_rows();
+		if($cek > 0){
+		   	$data_session = array(
+		    	'username' => $username,
+		    	'status' => "login"
+			);
+			$data = $this->dataLogin->get_user($username, $password);
+			if ($data[0]->level == '1') {
+		    		$this->session->set_userdata($data_session);
+					redirect('admin');
+			} else if ($data[0]->level == '3') {
+				$this->session->set_userdata($data_session);
+				redirect('member');
+			} else if ($data[0]->level == '2') {
+				$this->session->set_userdata($data_session);
+				redirect('perusahaan');
+		    } else{
+		    	echo"anda tidak terdaftar";
+		    }
+		}else{
+			echo "<script type='text/javascript'>
+		            alert ('Maaf Username Dan Password Anda Salah !');
+		            document.write ('<center><h1> Harap Masukan Username Dan Password Dengan Benar !</h1></center>
+		            <center><h1> www.kioscoding.com</h1></center>');
+		    </script>";
+  		}
+	}
+
+	public function logout(){
+ 		$this->session->sess_destroy();
+ 		redirect(base_url('login'));
 	}
 
 }

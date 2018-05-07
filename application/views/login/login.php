@@ -32,7 +32,8 @@
 	<div class="limiter">
 		<div class="container-login100" style="background-image: url('<?php echo base_url() ?>assets/images/bg-01.jpg');">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form">
+				<form action="<?php echo base_url("login/cek_login"); ?>" class="">
+				<?php // form_open('login/cek_login', array('enctype'=>'multipart/form-data', 'class'=>'login100-form')); ?>
 					<!-- <span class="login100-form-logo">
 						<i class="zmdi zmdi-landscape"></i>
 					</span> -->
@@ -47,7 +48,7 @@
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate="Enter password">
-						<input class="input100" type="password" name="pass" placeholder="Password">
+						<input class="input100" type="password" name="password" placeholder="Password">
 						<span class="focus-input100" data-placeholder="&#xf191;"></span>
 					</div>
 
@@ -56,7 +57,7 @@
 					</div>
 
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
+						<button class="login100-form-btn" name="login" value="login" type="submit">
 							Login
 						</button>
 					</div>

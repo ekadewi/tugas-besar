@@ -18,15 +18,15 @@
 	        <div class="col-sm-12">
 	            <div class="white-box">
 	                <div class="table-responsive">
-	                    <table class="table">
+	                    <table class="table" id="myTable">
 	                        <thead>
 	                            <tr>
 	                                <th>Jenis Perusahaan</th>
 	                                <th>Aksi</th>
 	                            </tr>
 	                        </thead>
-	                        <?php foreach ($jenis_perusahaan as $key): ?>
 	                        <tbody>
+	                        <?php foreach ($jenis_perusahaan as $key): ?>
 	                            <tr>
 	                                <td><?php echo $key->jenis_perusahaan ?></td>
 	                                <td>
@@ -34,8 +34,8 @@
 										<a href="delete_jenis_perusahaan/<?php echo $key->id_jenis_perusahaan ?>" class="btn btn-danger">Hapus</a>
 									</td>
 	                            </tr>
-	                        </tbody>
 	                        <?php endforeach ?>
+	                        </tbody>
 	                    </table>
 	                </div>
 	            </div>

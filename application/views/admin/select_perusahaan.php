@@ -18,24 +18,24 @@
 	        <div class="col-sm-12">
 	            <div class="white-box">
 	                <div class="table-responsive">
-	                    <table class="table">
+	                    <table class="table" id="myTable">
 	                        <thead>
 	                            <tr>
-	                                <th>Nama Perusahaan</th>
+	                                <th>Nama</th>
 	                                <th>Alamat</th>
-	                                <th>No Telp</th>
+	                                <th>Telp</th>
 	                                <th>Email</th>
 	                                <th>Website</th>
 	                                <th>Fax</th>
 	                                <th>Visi</th>
 	                                <th>Misi</th>
 	                                <th>Tahun Berdiri</th>
-	                                <th>Id Jenis Perusahaan</th>
 	                                <th>Foto</th>
+	                                <th>Aksi</th>
 	                            </tr>
 	                        </thead>
-	                        <?php foreach ($perusahaan as $key): ?>
 	                        <tbody>
+	                        <?php foreach ($perusahaan as $key): ?>
 	                            <tr>
 	                                <td><?php echo $key->nama_perusahaan; ?></td>
 	                                <td><?php echo $key->alamat; ?></td>
@@ -46,17 +46,16 @@
 	                                <td><?php echo $key->visi; ?></td>
 	                                <td><?php echo $key->misi; ?></td>
 	                                <td><?php echo $key->tahun_berdiri; ?></td>
-	                                <td><?php echo $key->id_jenis_perusahaan; ?></td>
 	                                <td>
-	                                	<img src="../upload/<?php echo $key->foto;?>" alt="Image" width="50" height="50"></td>
-	                                <td>
+	                                	<img src="../upload/<?php echo $key->foto;?>" alt="Image" width="50" height="50">
+	                                </td>
 	                                <td>
 	                                	<a href="admin/update_jenis_perusahaan/<?php echo $key->id_perusahaan ?>" class="btn btn-primary">Edit</a>
 										<a href="delete_perusahaan/<?php echo $key->id_perusahaan ?>" class="btn btn-danger">Hapus</a>
 									</td>
 	                            </tr>
-	                        </tbody>
 	                        <?php endforeach ?>
+	                        </tbody>
 	                    </table>
 	                </div>
 	            </div>

@@ -18,11 +18,11 @@
 	        <div class="col-sm-12">
 	            <div class="white-box">
 	                <div class="table-responsive">
-	                    <table class="table">
+	                    <table id="myTable" class="table">
 	                        <thead>
 	                            <tr>
 	                                <th>Nama</th>
-	                                <th>Jenis Kelamin</th>
+	                                <th>JK</th>
 	                                <th>Tanggal Lahir</th>
 	                                <th>Agama</th>
 	                                <th>Alamat</th>
@@ -32,8 +32,8 @@
 	                                <th>Aksi</th>
 	                            </tr>
 	                        </thead>
-	                        <?php foreach ($member as $key): ?>
 	                        <tbody>
+	                        <?php foreach ($member as $key): ?>
 	                            <tr>
 	                                <td><?php echo $key->nama_member ?></td>
 	                                <td><?php echo $key->jenis_kelamin ?></td>
@@ -49,8 +49,8 @@
 										<a href="delete_member/<?php echo $key->id_member ?>" class="btn btn-danger">Hapus</a>
 									</td>
 	                            </tr>
-	                        </tbody>
 	                        <?php endforeach ?>
+	                        </tbody>
 	                    </table>
 	                </div>
 	            </div>

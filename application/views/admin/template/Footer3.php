@@ -23,6 +23,8 @@
     <script src="../../assets/js/custom.min.js"></script>
     <script src="../../assets/js/dashboard1.js"></script>
     <script src="../../assets/bower_components/toast-master/js/jquery.toast.js"></script>
+    <!-- DataTables -->
+    <script type="text/javascript" src="../../assets/dt/datatables.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function() {
         $.toast({
@@ -35,6 +37,11 @@
             stack: 6
         })
     });
+    </script>
+    <script type="text/javascript">
+        $(document).ready( function () {
+            $('#myTable').DataTable();
+        } );
     </script>
 </body>
 

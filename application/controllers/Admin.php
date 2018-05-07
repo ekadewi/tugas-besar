@@ -3,6 +3,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Admin extends CI_Controller {
 
+	public function __construct()
+	{
+		parent::__construct();
+	}
+
 	public function index()
 	{
 		$this->load->model('dataAdmin');
@@ -67,17 +72,39 @@ if($this->form_validation->run()==False){
 		$this->load->model('dataAdmin');
 
 			$data = array();
-
-					$this->form_validation->set_rules('nama','nama', 'trim|required');
-			$this->form_validation->set_rules('jk','jk', 'trim|required');
-			$this->form_validation->set_rules('tanggal_lahir','tanggal_lahir', 'trim|required');
-			$this->form_validation->set_rules('agama','agama', 'trim|required');
-			$this->form_validation->set_rules('alamat','alamat', 'trim|required');
-			$this->form_validation->set_rules('no_telp','no_telp', 'trim|required');
-			$this->form_validation->set_rules('email','email', 'trim|required');
+			$this->form_validation->set_rules('nama','nama', 'required|alpha',
+				array(
+					'required' 	=> 'kolom %s tidak boleh kosong!!!!!!!',
+					'alpha' 	=> 'kolom %s hanya boleh diisi huruf'
+				));
+			$this->form_validation->set_rules('jk','jk', 'required',
+				array(
+					'required' 	=> 'kolom %s tidak boleh kosong!!!!!!!'
+				));
+			$this->form_validation->set_rules('tanggal_lahir','tanggal_lahir', 'required',
+				array(
+					'required' 	=> 'kolom %s tidak boleh kosong!!!!!!!'
+				));
+			$this->form_validation->set_rules('agama','agama', 'required',
+				array(
+					'required' 	=> 'kolom %s tidak boleh kosong!!!!!!!'
+				));
+			$this->form_validation->set_rules('alamat','alamat', 'required',
+				array(
+					'required' 	=> 'kolom %s tidak boleh kosong!!!!!!!'
+				));
+			$this->form_validation->set_rules('no_telp','no_telp', 'required|numeric',
+				array(
+					'required' 	=> 'kolom %s tidak boleh kosong!!!!!!!',
+					'numeric' 	=> 'kolom %s hanya boleh diisi angka'
+				));
+			$this->form_validation->set_rules('email','email', 'required|valid_email',
+				array(
+					'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!',
+					'valid_email' 	=> 'kolom %s harus diisi dengan format email'
+				));
 		if($this->form_validation->run()==False){
-		
-		$this->load->view('admin/insert_member', $data);
+			$this->load->view('admin/insert_member', $data);
 		}else{
 			$upload = $this->dataAdmin->upload();
 			if ($upload['result'] == 'success') {
