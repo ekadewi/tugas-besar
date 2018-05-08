@@ -1,5 +1,5 @@
 <?php
-    $this->load->view('admin/template/header2');
+    $this->load->view('admin/template/header');
 ?>
 <div id="page-wrapper">
 	<div class="container-fluid">
@@ -18,7 +18,7 @@
 	            <div class="white-box">
 	                <div class="table-responsive">
 	                   <?php echo form_open('admin/insert_jenis_perusahaan', array('enctype'=>'multipart/form-data')); ?>
-	                     <?php echo validation_errors(); ?> 
+	                    <h4 class="text-danger"><?php echo validation_errors(); ?></h4> 
 	                     
 						<table class="table table-responsive">
 							<tr>
@@ -38,5 +38,5 @@
 </div>
 
 <?php
-	$this->load->view('admin/template/footer2');
+	$this->load->view('admin/template/footer');
 ?>

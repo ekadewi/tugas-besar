@@ -1,5 +1,5 @@
 <?php
-    $this->load->view('admin/template/header2');
+    $this->load->view('admin/template/header');
 ?>
 <div id="page-wrapper">
 	<div class="container-fluid">
@@ -45,7 +45,7 @@
 	                                <td>
 	                                	<img src="../upload/<?php echo $key->foto_member;?>" alt="Image" width="50" height="50"></td>
 	                                <td>
-	                                	<a href="admin/update_jenis_perusahaan/<?php echo $key->id_member ?>" class="btn btn-primary">Edit</a>
+	                                	<a href="update_member/<?php echo $key->id_member ?>" class="btn btn-primary">Edit</a>
 										<a href="delete_member/<?php echo $key->id_member ?>" class="btn btn-danger">Hapus</a>
 									</td>
 	                            </tr>
@@ -60,5 +60,5 @@
 </div>
 
 <?php
-	$this->load->view('admin/template/footer2');
+	$this->load->view('admin/template/footer');
 ?>

@@ -43,10 +43,6 @@ class DataMember extends CI_Model {
 				'email' => $this->input->post('email'),
 				'foto_member' => $upload['file']['file_name']
 			);
-			$datauser = array(
-				'username'	=> $this->input->post('username'),
-				'password'	=> $this->input->post('password')
-			);
 		} else {
 			$data = array(
 				'nama_member' => $this->input->post('nama'),
@@ -57,15 +53,19 @@ class DataMember extends CI_Model {
 				'no_telp' => $this->input->post('no_telp'),
 				'email' => $this->input->post('email')
 			);
-			$datauser = array(
-				'username'	=> $this->input->post('username'),
-				'password'	=> $this->input->post('password')
-			);
 		}
 		$this->db->where('id_member', $id);
 		$this->db->update('member', $data);
+	}
+
+	public function update_akun($fk_user)
+	{
+		$data = array(
+			'username'	=> $this->input->post('username'),
+			'password'	=> $this->input->post('password')
+		);
 		$this->db->where('id_user', $fk_user);
-		$this->db->update('user', $datauser);
+		$this->db->update('user', $data);
 	}
 
 	public function get_perusahaan()

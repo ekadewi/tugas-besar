@@ -1,5 +1,5 @@
 <?php
-    $this->load->view('admin/template/header2');
+    $this->load->view('admin/template/header');
 ?>
 <div id="page-wrapper">
 	<div class="container-fluid">
@@ -65,5 +65,5 @@
 </div>
 
 <?php
-	$this->load->view('admin/template/footer2');
+	$this->load->view('admin/template/footer');
 ?>

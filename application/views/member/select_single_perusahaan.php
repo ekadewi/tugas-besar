@@ -1,4 +1,4 @@
-<?php $this->load->view('perusahaan/template/header'); ?>
+<?php $this->load->view('member/template/header'); ?>
 <div class="fh5co-about animate-box">
 	<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
 		<h2><?php echo $profile[0]->nama_perusahaan; ?></h2>
@@ -50,4 +50,4 @@
 		</div>
 	</div>
 </div>
-<?php $this->load->view('perusahaan/template/footer'); ?>
+<?php $this->load->view('member/template/footer'); ?>

@@ -1,5 +1,5 @@
 <?php
-    $this->load->view('admin/template/header3');
+    $this->load->view('admin/template/header');
 ?>
 <div id="page-wrapper">
 	<div class="container-fluid">
@@ -17,16 +17,12 @@
 	        <div class="col-sm-12">
 	            <div class="white-box">
 	                <div class="table-responsive">
+	                	<h4 class="text-danger"><?php echo validation_errors(); ?></h4> 
 	                	<?php foreach ($detail as $key): ?>
-	                   <?php echo form_open('admin/update_semester/'.$key->id_jenis_perusahaan, array('enctype'=>'multipart/form-data')); ?>
+	                   <?php echo form_open('admin/update_jenis_perusahaan/'.$key->id_jenis_perusahaan, array('enctype'=>'multipart/form-data')); ?>
 						<table class="table table-responsive">
 							<tr>
-								<td>Id</td>
-								<td>:</td>
-								<td><input type="text" name="id" value="<?php echo $key->id_jenis_perusahaan; ?>" style="width: 500px;"></td>
-							</tr>
-							<tr>
-								<td>Semester</td>
+								<td>Jenis Perusahaan</td>
 								<td>:</td>
 								<td><input type="text" name="nama" value="<?php echo $key->jenis_perusahaan; ?>" style="width: 500px;"></td>
 							</tr>
@@ -43,5 +39,5 @@
 </div>
 
 <?php
-	$this->load->view('admin/template/footer3');
+	$this->load->view('admin/template/footer');
 ?>

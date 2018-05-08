@@ -59,7 +59,25 @@ class DataAdmin extends CI_Model {
 		}
 	}
 
-	public function insert_member($upload)
+	public function insert_user($level)
+	{
+		$data = array(
+			'username'	=> $this->input->post('username'),
+			'password'	=> $this->input->post('password'),
+			'level'		=> $level
+		);
+
+		$this->db->insert('user', $data);
+	}
+
+	public function get_user($username)
+	{
+		$this->db->where('username', $username);
+		$query = $this->db->get('user');
+		return $query->result();
+	}
+
+	public function insert_member($id_user, $upload)
 	{
 		$data = array(
 			'nama_member' => $this->input->post('nama'),
@@ -69,7 +87,8 @@ class DataAdmin extends CI_Model {
 			'alamat' => $this->input->post('alamat'),
 			'no_telp' => $this->input->post('no_telp'),
 			'email' => $this->input->post('email'),
-			'foto_member' => $upload['file']['file_name']
+			'foto_member' => $upload['file']['file_name'],
+			'fk_user' => $id_user
 		);
 
 		$this->db->insert('member', $data);
@@ -78,6 +97,12 @@ class DataAdmin extends CI_Model {
 	public function delete_member($id){
 		$this->db->where('id_member', $id);
 		$this->db->delete('member');
+	}
+
+	public function delete_user($fk_user)
+	{
+		$this->db->where('id_user', $fk_user);
+		$this->db->delete('user');
 	}
 
 	public function get_lowongan(){
@@ -126,6 +151,53 @@ class DataAdmin extends CI_Model {
 	{
 		$query = $this->db->query('select count(*) as jumlah from lowongan');
 		return $query->result();
+	}
+
+	public function get_single_member($id)
+	{
+		$this->db->select('*');
+		$this->db->from('member');
+		$this->db->join('user', 'member.fk_user = user.id_user');
+		$this->db->where('member.id_member='.$id);
+		return $this->db->get()->result();
+	}	
+
+	public function update($upload, $id, $fk_user)
+	{
+		if ($upload['result']=='success') {
+			$data = array(
+				'nama_member' => $this->input->post('nama'),
+				'jenis_kelamin' => $this->input->post('jk'),
+				'tanggal_lahir' => $this->input->post('tanggal_lahir'),
+				'agama' => $this->input->post('agama'),
+				'alamat' => $this->input->post('alamat'),
+				'no_telp' => $this->input->post('no_telp'),
+				'email' => $this->input->post('email'),
+				'foto_member' => $upload['file']['file_name']
+			);
+			$datauser = array(
+				'username'	=> $this->input->post('username'),
+				'password'	=> $this->input->post('password')
+			);
+		} else {
+			$data = array(
+				'nama_member' => $this->input->post('nama'),
+				'jenis_kelamin' => $this->input->post('jk'),
+				'tanggal_lahir' => $this->input->post('tanggal_lahir'),
+				'agama' => $this->input->post('agama'),
+				'alamat' => $this->input->post('alamat'),
+				'no_telp' => $this->input->post('no_telp'),
+				'email' => $this->input->post('email')
+			);
+			$datauser = array(
+				'username'	=> $this->input->post('username'),
+				'password'	=> $this->input->post('password')
+			);
+		}
+		$this->db->where('id_member', $id);
+		$this->db->update('member', $data);
+		$this->db->where('id_user', $fk_user);
+		$this->db->update('user', $datauser);
 	}
 
 }

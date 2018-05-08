@@ -1,5 +1,5 @@
 <?php
-    $this->load->view('admin/template/header2');
+    $this->load->view('admin/template/header');
 ?>
 <div id="page-wrapper">
 	<div class="container-fluid">
@@ -68,6 +68,16 @@
 								<td><input type="text" name="email" style="width: 500px;" value="<?php echo set_value('email'); ?>"></td>
 							</tr>
 							<tr>
+								<td>Username</td>
+								<td>:</td>
+								<td><input type="text" name="username" style="width: 500px;" value="<?php echo set_value('username'); ?>"></td>
+							</tr>
+							<tr>
+								<td>Password</td>
+								<td>:</td>
+								<td><input type="password" name="password" style="width: 500px;" value="<?php echo set_value('password'); ?>"></td>
+							</tr>
+							<tr>
 								<td>Foto</td>
 								<td>:</td>
 								<td><input type="file" name="foto" value="<?php echo set_value('foto'); ?>"></td>
@@ -84,5 +94,5 @@
 </div>
 
 <?php
-	$this->load->view('admin/template/footer2');
+	$this->load->view('admin/template/footer');
 ?>

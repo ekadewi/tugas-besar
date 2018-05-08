@@ -69,15 +69,13 @@
 	<header id="fh5co-header" role="banner">
 		<div class="container">
 			<div class="header-inner">
-				<h1><a href="index.html">Flew</a></h1>
+				<a href="index.html"><img src="<?php echo base_url() ?>assets/images/loker.png" width="100" height="80"></a>
 				<nav role="navigation">
 					<ul>
-						<li><a href="work.html">Work</a></li>
-						<li><a href="services.html">Services</a></li>
-						<li><a href="pricing.html">Pricing</a></li>
-						<li class="active"><a href="about.html">About</a></li>
-						<li><a href="contact.html">Contact</a></li>
-						<li class="cta"><a href="#">Get started</a></li>
+						<li><a href="work.html">Beranda</a></li>
+						<li><a href="services.html">Profile</a></li>
+						<li><a href="pricing.html">Lowongan</a></li>
+						<li><a href="about.html">Pendaftar</a></li>
 					</ul>
 				</nav>
 			</div>
@@ -93,8 +91,8 @@
 		   		<div class="container">
 		   			<div class="col-md-10 col-md-offset-1 text-center js-fullheight slider-text">
 		   				<div class="slider-text-inner">
-		   					<h2 style="color: black;">Who We Are</h2>
-		   					<p class="fh5co-lead" style="color: black;">Designed with <i class="icon-heart"></i></p>
+		   					<h2 style="color: black;">Share Your Vacancy</h2>
+		   					<p class="fh5co-lead" style="color: black;">Get Your Worker <i class="icon-heart"></i></p>
 		   				</div>
 		   			</div>
 		   		</div>

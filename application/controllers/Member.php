@@ -20,6 +20,36 @@ class Member extends CI_Controller {
 		$this->load->view('member/profile', $data);
 	}
 
+	public function Akun($id)
+	{
+		$data['biodata'] = $this->dataMember->get_profile($id);
+		$this->load->view('member/akun', $data);
+	}
+
+	public function update_akun($id)
+	{
+		$data['biodata'] = $this->dataMember->get_profile($id);
+		$this->form_validation->set_rules('username', 'Username', 'required|is_unique[user.username]',
+			array(
+				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!',
+				'is_unique'		=> 'isi dari kolom %s sudah ada'
+			));
+		$this->form_validation->set_rules('password', 'Password', 'required',
+			array(
+				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
+			));
+		if ($this->form_validation->run()==False) {
+			$this->load->view('member/update_akun', $data);
+		}else{
+			if ($this->input->post('update')) {
+				$fk_user = $data['biodata'][0]->fk_user;
+				$this->dataMember->update_akun($fk_user);
+				//redirect('member/akun');
+			}
+			$this->load->view('member/update_akun', $data);
+		}
+	}
+
 	public function update($id)
 	{
 		$data['biodata'] = $this->dataMember->get_profile($id);
@@ -42,15 +72,6 @@ class Member extends CI_Controller {
 				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!',
 				'valid_email' 	=> 'kolom %s harus diisi dengan format email'
 			));
-		$this->form_validation->set_rules('username', 'Username', 'required|is_unique[user.username]',
-			array(
-				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!',
-				'is_unique'		=> 'isi dari kolom %s sudah ada'
-			));
-		$this->form_validation->set_rules('password', 'password', 'required',
-			array(
-				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
-			));
 		if($this->form_validation->run()==False){
 			$this->load->view('member/editProfile', $data);
 		} else {
@@ -72,6 +93,13 @@ class Member extends CI_Controller {
 		$data['perusahaan'] = $this->dataMember->get_perusahaan();
 		// $data['jenis'] = $this->dataMember->get_jenis();
 		$this->load->view('member/select_perusahaan', $data);
+	}
+
+	public function perusahaan_profile($id)
+	{
+		$this->load->model('dataPerusahaan');
+		$data['profile'] = $this->dataPerusahaan->get_profile($id);
+		$this->load->view('member/select_single_perusahaan', $data);
 	}
 
 }

@@ -63,16 +63,6 @@
 						<td><input type="text" name="email" class="form-control" style="width: 500px;" value="<?php echo $biodata[0]->email; ?>"></td>
 					</tr>
 					<tr>
-						<td>Username</td>
-						<td>:</td>
-						<td><input type="text" name="username" class="form-control" style="width: 500px;" value="<?php echo $biodata[0]->username; ?>"></td>
-					</tr>
-					<tr>
-						<td>Password</td>
-						<td>:</td>
-						<td><input type="password" name="password" class="form-control" style="width: 500px;" value="<?php echo $biodata[0]->password; ?>"></td>
-					</tr>
-					<tr>
 						<td>Foto</td>
 						<td>:</td>
 						<td><input type="file" name="foto" class="form-control"value="<?php echo set_value('foto'); ?>"></td>

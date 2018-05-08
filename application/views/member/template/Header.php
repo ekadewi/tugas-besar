@@ -63,6 +63,7 @@
 						<li><a href="pricing.html">Perusahaan</a></li>
 						<li><a href="about.html">Lowongan</a></li>
 						<li><a href="contact.html">Pemberitahuan</a></li>
+						<li><a href="contact.html">Akun</a></li>
 					</ul>
 				</nav>
 			</div>
@@ -78,8 +79,8 @@
 		   		<div class="container">
 		   			<div class="col-md-10 col-md-offset-1 text-center js-fullheight slider-text">
 		   				<div class="slider-text-inner">
-		   					<h2 style="color: black;">Who We Are</h2>
-		   					<p class="fh5co-lead" style="color: black;">Designed with <i class="icon-heart"></i></p>
+		   					<h2 style="color: black;">Get Your Job</h2>
+		   					<p class="fh5co-lead" style="color: black;">Nice to know you<i class="icon-heart"></i></p>
 		   				</div>
 		   			</div>
 		   		</div>
