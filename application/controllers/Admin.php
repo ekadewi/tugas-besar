@@ -225,6 +225,23 @@ class Admin extends CI_Controller {
 		}
 		
 	}
+	public function insert_perusahaan()
+	{
+		$data = array();
+		$data['jenis'] = $this->dataAdmin->get_jenis_perusahaan();
+		if ($this->input->post('simpan')) {
+			$upload = $this->dataAdmin->upload();
+			if ($upload['result'] == 'success') {
+				$this->dataAdmin->insert_user(2);
+				$user = $this->dataAdmin->get_user($this->input->post('username'));
+				$this->dataAdmin->insert_perusahaan($user[0]->id_user, $upload);
+				redirect('admin/perusahaan');
+			}else{
+				$data['message'] = $upload['error'];
+			}
+		}
+		$this->load->view('admin/insert_perusahaan', $data);
+	}
 
 }
 

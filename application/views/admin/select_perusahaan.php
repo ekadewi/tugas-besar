@@ -11,7 +11,7 @@
                     <li class="active">Perusahaan</li>
                 </ol>
             </div>
-            <a href="insert_jenis_perusahaan" class="btn btn-primary">Tambah</a>
+            <a href="insert_perusahaan" class="btn btn-primary">Tambah</a>
         </div>
         
 		<div class="row">

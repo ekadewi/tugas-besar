@@ -17,6 +17,13 @@
 				</div>
 				<?php endforeach ?>
 			</div>
+			<div class="text-center">
+				<?php
+				if (isset($links)) {
+					echo $links;
+				}
+			?>
+			</div>
 		</div>
 	</div>
 <?php $this->load->view('member/template/footer'); ?>

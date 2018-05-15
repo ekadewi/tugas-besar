@@ -68,8 +68,11 @@ class DataMember extends CI_Model {
 		$this->db->update('user', $data);
 	}
 
-	public function get_perusahaan()
+	public function get_perusahaan($limit = FALSE, $offset = FALSE)
 	{
+		if ($limit) {
+			$this->db->limit($limit, $offset);
+		}
 		$this->db->select('*');
 		$this->db->from('perusahaan');
 		$this->db->join('jenis_perusahaan', 'perusahaan.id_jenis_perusahaan = jenis_perusahaan.id_jenis_perusahaan');
@@ -80,6 +83,27 @@ class DataMember extends CI_Model {
 	{
 		$query = $this->db->get('jenis_perusahaan');
 		return $query->result();
+	}
+
+	public function get_total_perusahaan()
+	{
+		return $this->db->count_all("perusahaan");
+	}
+
+	public function get_lowongan($limit = FALSE, $offset = FALSE)
+	{
+		if ($limit) {
+			$this->db->limit($limit, $offset);
+		}
+		$this->db->select('*');
+		$this->db->from('lowongan');
+		$this->db->join('perusahaan', 'lowongan.id_perusahaan = perusahaan.id_perusahaan');
+		return $this->db->get()->result();
+	}
+
+	public function get_total_lowongan()
+	{
+		return $this->db->count_all("lowongan");
 	}
 
 }

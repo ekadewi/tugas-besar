@@ -200,6 +200,32 @@ class DataAdmin extends CI_Model {
 		$this->db->update('user', $datauser);
 	}
 
+	public function get_single_perusahaan($id)
+	{
+		$query = $this->db->query('select * from perusahaan where id_perusahaan='.$id);
+		return $query->result();	
+	}
+
+	public function insert_perusahaan($id_user, $upload)
+	{
+		$data = array(
+			'nama_perusahaan' => $this->input->post('nama'),
+			'alamat' => $this->input->post('alamat'),
+			'no_telp' => $this->input->post('no_telp'),
+			'email' => $this->input->post('email'),
+			'website' => $this->input->post('website'),
+			'fax' => $this->input->post('fax'),
+			'visi' => $this->input->post('visi'),
+			'misi' => $this->input->post('misi'),
+			'tahun_berdiri' => $this->input->post('tahun_berdiri'),
+			'id_jenis_perusahaan' => $this->input->post('id_jenis_perusahaan'),
+			'foto' => $upload['file']['file_name'],
+			'fk_user' => $id_user
+		);
+
+		$this->db->insert('perusahaan', $data);
+	}
+
 }
 
 /* End of file Admin.php */

@@ -9,6 +9,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url() ?>assets/images/favicon.png">
     <title>Loker_Admin</title>
     <!-- Bootstrap Core CSS -->
+    <link href="<?php echo base_url() ?>assets/bootstrap/new/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Menu CSS -->
     <link href="<?php echo base_url() ?>assets/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
@@ -24,6 +25,11 @@
     <link href="<?php echo base_url() ?>assets/css/colors/blue-dark.css" id="theme" rel="stylesheet">
     <!-- DataTables -->
     <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/dt/datatables.min.css"/>
+    <style type="text/css">
+        .navbar {
+            padding: 0;
+        }
+    </style>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>

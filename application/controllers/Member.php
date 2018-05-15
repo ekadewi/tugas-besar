@@ -90,8 +90,21 @@ class Member extends CI_Controller {
 
 	public function perusahaan()
 	{
-		$data['perusahaan'] = $this->dataMember->get_perusahaan();
-		// $data['jenis'] = $this->dataMember->get_jenis();
+		$limit_per_page = 3;
+		$start_index = ( $this->uri->segment(3) ) ? $this->uri->segment(3) : 0;
+		$total_records = $this->dataMember->get_total_perusahaan();
+		if ($total_records > 0) {
+			$data['perusahaan'] = $this->dataMember->get_perusahaan($limit_per_page, $start_index);
+
+			$config['base_url'] = base_url() . 'member/perusahaan';
+			$config['total_rows'] = $total_records;
+			$config['per_page'] = $limit_per_page;
+			$config['uri_segment'] = 3;
+			
+			$this->pagination->initialize($config);
+			
+			$data['links'] = $this->pagination->create_links();
+		}
 		$this->load->view('member/select_perusahaan', $data);
 	}
 
@@ -100,6 +113,26 @@ class Member extends CI_Controller {
 		$this->load->model('dataPerusahaan');
 		$data['profile'] = $this->dataPerusahaan->get_profile($id);
 		$this->load->view('member/select_single_perusahaan', $data);
+	}
+
+	public function lowongan()
+	{
+		$limit_per_page = 3;
+		$start_index = ( $this->uri->segment(3) ) ? $this->uri->segment(3) : 0;
+		$total_records = $this->dataMember->get_total_lowongan();
+		if ($total_records > 0) {
+			$data['lowongan'] = $this->dataMember->get_lowongan($limit_per_page, $start_index);
+
+			$config['base_url'] = base_url() . 'member/lowongan';
+			$config['total_rows'] = $total_records;
+			$config['per_page'] = $limit_per_page;
+			$config['uri_segment'] = 3;
+			
+			$this->pagination->initialize($config);
+			
+			$data['links'] = $this->pagination->create_links();
+		}
+		$this->load->view('member/select_lowongan', $data);
 	}
 
 }
