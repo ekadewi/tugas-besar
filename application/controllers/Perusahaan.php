@@ -11,12 +11,12 @@ class Perusahaan extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('perusahaan/home');		
+		redirect('perusahaan/profile/'.$this->session->userdata('id'));		
 	}
 
-	public function profile($id)
+	public function profile($fk)
 	{
-		$data['profile'] = $this->dataPerusahaan->get_profile($id);
+		$data['profile'] = $this->dataPerusahaan->get_profile($fk);
 		$this->load->view('perusahaan/home', $data);
 	}
 

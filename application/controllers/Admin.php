@@ -7,6 +7,9 @@ class Admin extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('dataAdmin');
+		// if ($this->session->userdata('level') != 1) {
+		// 	redirect('login','refresh');
+		// }
 	}
 
 	public function index()

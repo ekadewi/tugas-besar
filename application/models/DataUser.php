@@ -7,8 +7,8 @@ class DataUser extends CI_Model {
 	{
 		$data = array(
 			'username'	=> $this->input->post('username'),
-			'password'	=> $this->input->post('password'),
-			'level'		=> $level
+			'password'	=> md5($this->input->post('password')),
+			'id_level'		=> $level
 		);
 
 		$this->db->insert('user', $data);

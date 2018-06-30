@@ -1,4 +1,8 @@
-
+<?php
+    if ($this->session->userdata('level') != 3) {
+        redirect('login');
+    }
+?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -64,6 +68,7 @@
 						<li><a href="about.html">Lowongan</a></li>
 						<li><a href="contact.html">Pemberitahuan</a></li>
 						<li><a href="contact.html">Akun</a></li>
+						<li><a href="<?php echo base_url() ?>login/logout">Logout</a></li>
 					</ul>
 				</nav>
 			</div>
@@ -88,3 +93,12 @@
 		  	</ul>
 	  	</div>
 	</aside>
+	<?php if($this->session->flashdata('user_loggedin')): ?>
+     	<?php echo '<p class="alert alert-success">'.$this->session->flashdata('user_loggedin').'</p>'; ?>
+   	<?php endif; ?>
+   	<?php if($this->session->flashdata('login_failed')): ?>
+     	<?php echo '<p class="alert alert-danger">'.$this->session->flashdata('login_failed').'</p>'; ?>
+   	<?php endif; ?>
+   	<?php if($this->session->flashdata('user_loggedout')): ?>
+     	<?php echo '<p class="alert alert-success">'.$this->session->flashdata('user_loggedout').'</p>'; ?>
+   	<?php endif; ?>

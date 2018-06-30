@@ -45,44 +45,68 @@ class Login extends CI_Controller {
 
 	public function cek_login()
 	{
-		$username = $this->input->post('username');
-		$password = $this->input->post('password');
-		$where = array(
-			'username' => $username,
-		 	'password' => $password
-		);
-		die();
-		$cek = $this->dataLogin->cek_login("user",$where)->num_rows();
-		if($cek > 0){
-		   	$data_session = array(
-		    	'username' => $username,
-		    	'status' => "login"
-			);
-			$data = $this->dataLogin->get_user($username, $password);
-			if ($data[0]->level == '1') {
-		    		$this->session->set_userdata($data_session);
+		$this->form_validation->set_rules('username', 'Username', 'required',
+			array(
+				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
+			));
+		$this->form_validation->set_rules('password', 'Password', 'required',
+			array(
+				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
+			));
+
+		if ($this->form_validation->run() === FALSE) {
+			$this->load->view('login/login');
+		} else {
+			$username = $this->input->post('username');
+			$password = md5($this->input->post('password'));
+			// $level = $this->input->post('level');
+
+			$id_user = $this->dataLogin->login($username, $password);
+			// var_dump($id_user);
+			// die();
+			if ($id_user) {
+				$level = $this->dataLogin->get_user($id_user);
+				$user_data = array(
+					'id' => $id_user,
+					'username' => $username,
+					'logged_in' => true,
+					'level' => $level[0]->id_level
+				);
+
+				$this->session->set_userdata($user_data);
+				$this->session->set_flashdata('user_loggedin', 'You are now logged in');
+				// redirect('blog');
+				if ($this->session->userdata('level') == 1) {
 					redirect('admin');
-			} else if ($data[0]->level == '3') {
-				$this->session->set_userdata($data_session);
-				redirect('member');
-			} else if ($data[0]->level == '2') {
-				$this->session->set_userdata($data_session);
-				redirect('perusahaan');
-		    } else{
-		    	echo"anda tidak terdaftar";
-		    }
-		}else{
-			echo "<script type='text/javascript'>
-		            alert ('Maaf Username Dan Password Anda Salah !');
-		            document.write ('<center><h1> Harap Masukan Username Dan Password Dengan Benar !</h1></center>
-		            <center><h1> www.kioscoding.com</h1></center>');
-		    </script>";
-  		}
+				} else if ($this->session->userdata('level') == 2) {
+					redirect('perusahaan');
+				} else if ($this->session->userdata('level') == 3) {
+					redirect('member/profile/'.$this->session->userdata("id"));
+				} else {
+					redirect('welcome');
+				} 
+				
+			} else {
+				$this->session->set_flashdata('login_failed', 'Login Failed');
+				// var_dump($username);
+				// var_dump($password);
+				// var_dump($id_user);
+				redirect('login');
+			}
+
+		}
 	}
 
-	public function logout(){
- 		$this->session->sess_destroy();
- 		redirect(base_url('login'));
+	public function logout()
+	{
+		$this->session->unset_userdata('logged_in');
+		$this->session->unset_userdata('id');
+		$this->session->unset_userdata('username');
+		$this->session->unset_userdata('level');
+
+		$this->session->set_flashdata('user_loggedout', 'You are logged out');
+
+		redirect('login');
 	}
 
 }

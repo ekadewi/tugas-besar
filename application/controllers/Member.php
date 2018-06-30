@@ -11,7 +11,7 @@ class Member extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('member/home');		
+		$this->load->view('member');		
 	}
 
 	public function Profile($id)

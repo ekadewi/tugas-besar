@@ -29,7 +29,7 @@
 								<td>Jenis Kelamin</td>
 								<td>:</td>
 								<td>
-									<input type="radio" value="L" name="jk"/>
+									<input type="radio" value="Laki-Laki" name="jk"/>
 			                        <label class="gender">Laki-Laki</label>
 			                        <input type="radio" value="P" name="jk"/>
 			                        <label class="gender">Perempuan</label>

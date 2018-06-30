@@ -1,3 +1,12 @@
+<?php
+	if ($this->session->userdata('level') == 1) {
+		redirect('admin');
+	} else if ($this->session->userdata('level') == 2) {
+		redirect('perusahaan');
+	} else if ($this->session->userdata('level') == 3) {
+		redirect('member/profile/'.$this->session->userdata("id"));
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,8 +41,10 @@
 	<div class="limiter">
 		<div class="container-login100" style="background-image: url('<?php echo base_url() ?>assets/images/bg-01.jpg');">
 			<div class="wrap-login100">
-				<form action="<?php echo base_url("login/cek_login"); ?>" class="">
-				<?php // form_open('login/cek_login', array('enctype'=>'multipart/form-data', 'class'=>'login100-form')); ?>
+				<div class="text-center text-danger btn-danger">
+					<?php echo validation_errors(); ?>
+				</div>
+				<?php echo form_open('login/cek_login', array('enctype'=>'multipart/form-data', 'class'=>'login100-form')); ?>
 					<!-- <span class="login100-form-logo">
 						<i class="zmdi zmdi-landscape"></i>
 					</span> -->
@@ -57,7 +68,7 @@
 					</div>
 
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn" name="login" value="login" type="submit">
+						<button class="login100-form-btn" name="login" type="submit">
 							Login
 						</button>
 					</div>

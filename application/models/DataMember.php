@@ -3,12 +3,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class DataMember extends CI_Model {
 
-	public function get_profile($id)
+	public function get_profile($fk)
 	{
 		$this->db->select('*');
 		$this->db->from('member');
 		$this->db->join('user', 'member.fk_user = user.id_user');
-		$this->db->where('member.id_member='.$id);
+		$this->db->where('member.fk_user='.$fk);
 		return $this->db->get()->result();
 	}	
 
