@@ -9,7 +9,7 @@
 		<div class="row">
 			<div class="table-responsive">
 	        	<h4 class="text text-danger"><?php echo validation_errors(); ?></h4>
-	        	<?php echo form_open_multipart('member/update_akun/'.$biodata[0]->id_member);?>
+	        	<?php echo form_open_multipart('member/update_akun/'.$this->session->userdata('id'));?>
 				<table class="table table-responsive">
 					<tr>
 						<td>Username</td>

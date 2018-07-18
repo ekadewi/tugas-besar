@@ -22,6 +22,9 @@ class Member extends CI_Controller {
 
 	public function Akun($id)
 	{
+		if ($this->session->userdata('level') != 4) {
+			$this->session->set_flashdata('not_allow', 'maaf anda bukan member premium');
+		}
 		$data['biodata'] = $this->dataMember->get_profile($id);
 		$this->load->view('member/akun', $data);
 	}
@@ -42,9 +45,9 @@ class Member extends CI_Controller {
 			$this->load->view('member/update_akun', $data);
 		}else{
 			if ($this->input->post('update')) {
-				$fk_user = $data['biodata'][0]->fk_user;
-				$this->dataMember->update_akun($fk_user);
-				//redirect('member/akun');
+				// $fk_user = $data['biodata'][0]->fk_user;
+				$this->dataMember->update_akun($this->session->userdata('id'));
+				redirect('member/akun/'.$this->session->userdata('id'));
 			}
 			$this->load->view('member/update_akun', $data);
 		}
@@ -77,11 +80,11 @@ class Member extends CI_Controller {
 		} else {
 			if ($this->input->post('update')) {
 				$upload=$this->dataMember->upload();
-				$fk_user = $data['biodata'][0]->fk_user;
+				// $fk_user = $data['biodata'][0]->fk_user;
 				// var_dump($fk_user);
 				// die();
-				$this->dataMember->update($upload, $id, $fk_user);
-				redirect('member/profile/'.$id);
+				$this->dataMember->update($upload, $id, $this->session->userdata('id'));
+				redirect('member/profile/'.$this->session->userdata('id'));
 			}
 			$this->load->view('member/editProfile', $data);
 		}
@@ -110,9 +113,14 @@ class Member extends CI_Controller {
 
 	public function perusahaan_profile($id)
 	{
-		$this->load->model('dataPerusahaan');
-		$data['profile'] = $this->dataPerusahaan->get_profile($id);
+		$data['profile'] = $this->dataMember->get_profile_perusahaan($id);
 		$this->load->view('member/select_single_perusahaan', $data);
+	}
+
+	public function detail_lowongan($id)
+	{
+		$data['profile'] = $this->dataMember->get_single_lowongan($id);
+		$this->load->view('member/select_single_lowongan', $data);
 	}
 
 	public function lowongan()
@@ -133,6 +141,26 @@ class Member extends CI_Controller {
 			$data['links'] = $this->pagination->create_links();
 		}
 		$this->load->view('member/select_lowongan', $data);
+	}
+
+	public function perusahaan_lowongan($id)
+	{
+		$limit_per_page = 3;
+		$start_index = ( $this->uri->segment(3) ) ? $this->uri->segment(3) : 0;
+		$total_records = $this->dataMember->get_total_lowongan_perusahaan($id);
+		if ($total_records > 0) {
+			$data['lowongan'] = $this->dataMember->get_lowongan_perusahaan($limit_per_page, $start_index, $id);
+
+			$config['base_url'] = base_url() . 'member/perusahaan_lowongan';
+			$config['total_rows'] = $total_records;
+			$config['per_page'] = $limit_per_page;
+			$config['uri_segment'] = 3;
+			
+			$this->pagination->initialize($config);
+			
+			$data['links'] = $this->pagination->create_links();
+		}
+		$this->load->view('member/select_perusahaan_lowongan', $data);
 	}
 
 }

@@ -1,9 +1,3 @@
-<?php
-    if ($this->session->userdata('level') != 3 && $this->session->userdata('level') != 4) {
-        redirect('login');
-        // echo var_dump($this->session->userdata('level'));
-    }
-?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -57,6 +51,15 @@
 	
 	
 	<div id="fh5co-page">
+	<?php if($this->session->flashdata('user_loggedin')): ?>
+     	<?php echo '<p class="alert alert-success">'.$this->session->flashdata('user_loggedin').'</p>'; ?>
+   	<?php endif; ?>
+   	<?php if($this->session->flashdata('login_failed')): ?>
+     	<?php echo '<p class="alert alert-danger">'.$this->session->flashdata('login_failed').'</p>'; ?>
+   	<?php endif; ?>
+   	<?php if($this->session->flashdata('user_loggedout')): ?>
+     	<?php echo '<p class="alert alert-success">'.$this->session->flashdata('user_loggedout').'</p>'; ?>
+   	<?php endif; ?>
    	<?php if($this->session->flashdata('not_allow')): ?>
      	<?php echo '<p class="alert alert-danger">'.$this->session->flashdata('not_allow').'</p>'; ?>
    	<?php endif; ?>
@@ -64,16 +67,11 @@
 	<header id="fh5co-header" role="banner">
 		<div class="container">
 			<div class="header-inner">
-				<a href="index.html"><img src="<?php echo base_url() ?>assets/images/loker.png" width="100" height="80"></a>
+				<a href="<?php echo base_url() ?>visitor"><img src="<?php echo base_url() ?>assets/images/loker.png" width="100" height="80"></a>
 				<nav role="navigation">
 					<ul>
-						<li><a href="work.html">Beranda</a></li>
-						<li><a href="<?php echo base_url('member/profile/'.$this->session->userdata('id')) ?>">Profile</a></li>
-						<li><a href="<?php echo base_url('member/perusahaan') ?>">Perusahaan</a></li>
-						<li><a href="<?php echo base_url('member/lowongan') ?>">Lowongan</a></li>
-						<li><a href="contact.html">Pemberitahuan</a></li>
-						<li><a href="<?php echo base_url('member/akun/'.$this->session->userdata('id')) ?>">Akun</a></li>
-						<li class="cta"><a href="<?php echo base_url() ?>login/logout">Logout</a></li>
+						<li><a href="<?php echo base_url() ?>visitor">Beranda</a></li>
+						<li class="cta"><a href="<?php echo base_url() ?>login">Login & Register</a></li>
 					</ul>
 				</nav>
 			</div>
@@ -88,8 +86,8 @@
 		   		<div class="container">
 		   			<div class="col-md-10 col-md-offset-1 text-center js-fullheight slider-text">
 		   				<div class="slider-text-inner">
-		   					<h2 style="color: black;">Get Your Job</h2>
-		   					<p class="fh5co-lead" style="color: black;">Nice to know you<i class="icon-heart"></i></p>
+		   					<h2 style="color: black;">Join Us</h2>
+		   					<p class="fh5co-lead" style="color: black;">Get your job<i class="icon-heart"></i></p>
 		   				</div>
 		   			</div>
 		   		</div>

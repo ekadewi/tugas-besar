@@ -1,10 +1,3 @@
-<?php
-    // var_dump($this->session->userdata());
-    // echo $this->session->userdata('level');
-    if ($this->session->userdata('level') != 1) {
-        redirect('login');
-    }
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -77,21 +70,6 @@
                 <ul class="nav" id="side-menu">
                     <li style="padding: 10px 0 0;">
                         <a href="<?php echo base_url() ?>admin" class="waves-effect"><i class="fa fa-clock-o fa-fw" aria-hidden="true"></i><span class="hide-menu">Beranda</span></a>
-                    </li>
-                    <li>
-                        <a href="<?php echo base_url() ?>admin/perusahaan" class="waves-effect"><i class="fa fa-institution fa-fw" aria-hidden="true"></i><span class="hide-menu">Perusahaan</span></a>
-                    </li>
-                    <li>
-                        <a href="<?php echo base_url() ?>admin/jenis_perusahaan" class="waves-effect"><i class="fa fa-navicon fa-fw" aria-hidden="true"></i><span class="hide-menu">Jenis Perusahaan</span></a>
-                    </li>
-                    <li>
-                        <a href="<?php echo base_url() ?>admin/member" class="waves-effect"><i class="fa fa-group fa-fw" aria-hidden="true"></i><span class="hide-menu">Member</span></a>
-                    </li>
-                    <li>
-                        <a href="<?php echo base_url() ?>admin/lowongan" class="waves-effect"><i class="fa fa-table fa-fw" aria-hidden="true"></i><span class="hide-menu">Lowongan</span></a>
-                    </li>
-                    <li>
-                        <a href="<?php echo base_url() ?>admin/pendaftar" class="waves-effect"><i class="fa fa-file-text fa-fw" aria-hidden="true"></i><span class="hide-menu">Pendaftar</span></a>
                     </li>
                 </ul>
             </div>

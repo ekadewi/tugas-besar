@@ -1,4 +1,4 @@
-<?php $this->load->view('member/template/header'); ?>
+<?php $this->load->view('visitor/template/header'); ?>
 <div id="fh5co-work-section" class="fh5co-light-grey-section">
 		<div class="container">
 			<div class="row">
@@ -10,7 +10,7 @@
 							<div class="v-align-middle">
 								<h3 class="title"><?php echo $key->nama_perusahaan;?></h3>
 								<h5 class="category"><?php echo $key->jenis_perusahaan;?></h5>
-								<a href="<?php echo base_url() ?>member/perusahaan_profile/<?php echo $key->fk_user ?>" class="btn btn-primary btn-outline with-arrow">Learn more <i class="icon-arrow-right"></i></a>
+								<a href="<?php echo base_url() ?>visitor/perusahaan_profile/<?php echo $key->fk_user; ?>" class="btn btn-primary btn-outline with-arrow">Learn more <i class="icon-arrow-right"></i></a>
 							</div>
 						</div>
 					</div>
@@ -26,4 +26,4 @@
 			</div>
 		</div>
 </div>
-<?php $this->load->view('member/template/footer'); ?>
+<?php $this->load->view('visitor/template/footer'); ?>

@@ -30,7 +30,7 @@ a:hover{
 h1 {
     font-weight:200;
     color: #888888;
-    font-size:16pt;
+    /*font-size:16pt;*/
     background: transparent url(../img/h1.png) no-repeat center left;
     padding-left:33px;
     margin:7px 5px 8px 8px;
@@ -43,16 +43,16 @@ h4 {
     text-transform:uppercase;
 }
 form.register{
-    width:800px;
+    width:1130px;
     margin: 20px auto 0px auto;
-    height:530px;
+    height:610px;
     background-color:#fff;
     padding:5px;
     -moz-border-radius:20px;
     -webkit-border-radius:20px;
 }
 form p{
-    font-size: 8pt;
+    /*font-size: 8pt;*/
     clear:both;
     margin: 0;
     color:gray;
@@ -60,7 +60,7 @@ form p{
 }
 form.register fieldset.row1
 {
-    width:770px;
+    /*width:770px;*/
     padding:5px;
     float:left;
     border-top:1px solid #F5F5F5;
@@ -114,12 +114,12 @@ form.register legend
     padding:2px;
     margin-left: 14px;
     font-weight:bold;
-    font-size: 14px;
+    font-size: 20px;
     font-weight:100;
 }
 form.register label{
     color:#444;
-    width:98px;
+    width:100px;
     float: left;
     text-align: right;
     margin-right: 6px;

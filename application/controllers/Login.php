@@ -25,7 +25,12 @@ class Login extends CI_Controller {
 			$upload = $this->DataUser->upload();
 
 			if ($upload['result'] == 'success') {
-				$this->DataUser->daftar_user($level); 
+				if ($level == 3) {
+					$this->DataUser->daftar_user($this->input->post('type_user'));
+				} else {
+					$this->DataUser->daftar_user($level);
+				}
+
 				$user = $this->DataUser->get_user($this->input->post('username'));
 				
 				if ($level == 3) {
@@ -82,6 +87,10 @@ class Login extends CI_Controller {
 					redirect('perusahaan');
 				} else if ($this->session->userdata('level') == 3) {
 					redirect('member/profile/'.$this->session->userdata("id"));
+				} else if ($this->session->userdata('level') == 4) {
+					redirect('member/profile/'.$this->session->userdata("id"));
+				} else if($this->session->userdata('level') == 5) {
+					redirect('owner');
 				} else {
 					redirect('welcome');
 				} 

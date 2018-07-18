@@ -10,13 +10,22 @@ class DataMember extends CI_Model {
 		$this->db->join('user', 'member.fk_user = user.id_user');
 		$this->db->where('member.fk_user='.$fk);
 		return $this->db->get()->result();
-	}	
+	}
+
+	public function get_profile_perusahaan($fk)
+	{
+		$this->db->select('*');
+		$this->db->from('perusahaan');
+		$this->db->join('jenis_perusahaan', 'perusahaan.id_jenis_perusahaan = jenis_perusahaan.id_jenis_perusahaan');
+		$this->db->where('perusahaan.fk_user', $fk);
+		return $this->db->get()->result();
+	}
 
 	public function upload()
 	{
 		$config['upload_path'] = './upload/';
 		$config['allowed_types'] = 'jpg|png';
-		$config['max_size']  = '2048';
+		$config['max_size']  = '2048000';
 		$config['remove_space']  = TRUE;
 		
 		$this->load->library('upload', $config);
@@ -98,12 +107,41 @@ class DataMember extends CI_Model {
 		$this->db->select('*');
 		$this->db->from('lowongan');
 		$this->db->join('perusahaan', 'lowongan.id_perusahaan = perusahaan.id_perusahaan');
+		$this->db->order_by('id_lowongan', 'desc');
+		return $this->db->get()->result();
+	}
+
+	public function get_lowongan_perusahaan($limit = FALSE, $offset = FALSE, $id)
+	{
+		if ($limit) {
+			$this->db->limit($limit, $offset);
+		}
+		$this->db->select('*');
+		$this->db->from('lowongan');
+		$this->db->join('perusahaan', 'lowongan.id_perusahaan = perusahaan.id_perusahaan');
+		$this->db->where('lowongan.id_perusahaan', $id);
+		$this->db->order_by('id_lowongan', 'desc');
 		return $this->db->get()->result();
 	}
 
 	public function get_total_lowongan()
 	{
 		return $this->db->count_all("lowongan");
+	}
+
+	public function get_total_lowongan_perusahaan($id)
+	{
+		$this->db->where('id_perusahaan', $id);
+		return $this->db->count_all("lowongan");
+	}
+
+	public function get_single_lowongan($id)
+	{
+		$this->db->select('*');
+		$this->db->from('lowongan');
+		$this->db->join('perusahaan', 'lowongan.id_perusahaan = perusahaan.id_perusahaan');
+		$this->db->where('lowongan.id_lowongan', $id);
+		return $this->db->get()->result();
 	}
 
 }

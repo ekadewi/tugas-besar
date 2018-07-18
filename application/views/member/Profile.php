@@ -10,7 +10,7 @@
 				<p>Jenis Kelamin : <?php echo $biodata[0]->jenis_kelamin; ?></p>
 			</div>
 			<div class="col-md-6 col-md-offset-3 text-center fh5co-heading animate-box">
-				<a href="../update/<?php echo $biodata[0]->id_member; ?>" class="btn btn-primary">Edit Profile</a>
+				<a href="../update/<?php echo $this->session->userdata('id'); ?>" class="btn btn-primary">Edit Profile</a>
 			</div>
 		</div>
 	</div>

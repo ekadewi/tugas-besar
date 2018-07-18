@@ -1,4 +1,4 @@
-<?php $this->load->view('member/template/header'); ?>
+<?php $this->load->view('visitor/template/header'); ?>
 <div id="fh5co-services-section">
 	<div class="container">
 		<div class="row">
@@ -14,7 +14,7 @@
 					<br>
 					<?php echo $key->deskripsi; ?>
 				</p>
-				<p><a href="<?php echo base_url() ?>member/detail_lowongan/<?php echo $key->id_lowongan; ?>" class="btn btn-primary btn-outline with-arrow">Learn more <i class="icon-arrow-right"></i></a></p>
+				<p><a href="<?php echo base_url() ?>visitor/detail_lowongan/<?php echo $key->id_lowongan; ?>" class="btn btn-primary btn-outline with-arrow">Learn more <i class="icon-arrow-right"></i></a></p>
 			</div>
 			<?php endforeach ?>
 		</div>
@@ -27,4 +27,4 @@
 		</div>
 	</div>
 </div>
-<?php $this->load->view('member/template/footer'); ?>
+<?php $this->load->view('visitor/template/footer'); ?>

@@ -14,7 +14,7 @@
 					<br>
 					<?php echo $key->deskripsi; ?>
 				</p>
-				<p><a href="<?php echo base_url() ?>member/detail_lowongan/<?php echo $key->id_lowongan; ?>" class="btn btn-primary btn-outline with-arrow">Learn more <i class="icon-arrow-right"></i></a></p>
+				<p><a href="#" class="btn btn-primary btn-outline with-arrow">Learn more <i class="icon-arrow-right"></i></a></p>
 			</div>
 			<?php endforeach ?>
 		</div>

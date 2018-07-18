@@ -23,7 +23,7 @@ class DataUser extends CI_Model {
 
 	public function upload()
 	{
-		$config['upload_path'] = './assets/images/upload/';
+		$config['upload_path'] = './upload/';
 		$config['allowed_types'] = 'jpg|png';
 		$config['max_size']  = '2048';
 		$config['remove_space']  = TRUE;

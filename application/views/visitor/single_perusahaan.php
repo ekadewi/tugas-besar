@@ -1,4 +1,4 @@
-<?php $this->load->view('member/template/header'); ?>
+<?php $this->load->view('visitor/template/header'); ?>
 <div class="fh5co-about animate-box">
 	<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
 		<h2><?php echo $profile[0]->nama_perusahaan; ?></h2>
@@ -28,10 +28,6 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3 text-center fh5co-heading animate-box">
-				<h2>Lowongan</h2>
-				<p><a href="<?php echo base_url('member/perusahaan_lowongan/'.$profile[0]->id_perusahaan) ?>">klik untuk melihat lowongan perusahaan <?php echo $profile[0]->nama_perusahaan; ?></a></p>
-			</div>
-			<div class="col-md-6 col-md-offset-3 text-center fh5co-heading animate-box">
 				<h2>Alamat</h2>
 				<p><?php echo $profile[0]->alamat; ?></p>
 			</div>
@@ -54,4 +50,4 @@
 		</div>
 	</div>
 </div>
-<?php $this->load->view('member/template/footer'); ?>
+<?php $this->load->view('visitor/template/footer'); ?>

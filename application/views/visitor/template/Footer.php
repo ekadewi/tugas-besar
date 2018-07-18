@@ -1,4 +1,3 @@
-<!-- jQuery -->
 	<footer id="fh5co-footer" role="contentinfo">
 	
 		<div class="container">
@@ -41,6 +40,7 @@
 			
 		</div>
 	</footer>
+<!-- jQuery -->
 	<script src="<?php echo base_url() ?>assets/user/js/jquery.min.js"></script>
 	<!-- jQuery Easing -->
 	<script src="<?php echo base_url() ?>assets/user/js/jquery.easing.1.3.js"></script>
@@ -54,15 +54,5 @@
 	<!-- MAIN JS -->
 	<script src="<?php echo base_url() ?>assets/user/js/main.js"></script>
 
-	<!-- DataTables -->
-	<script type="text/javascript" src="<?php echo base_url() ?>assets/dt/datatables.min.js"></script>
-
-	<script type="text/javascript">
-        $(document).ready( function () {
-                $('#myTable').DataTable({
-                    "bInfo" : false
-                });
-            } );
-    </script>
 	</body>
 </html>

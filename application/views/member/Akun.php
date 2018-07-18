@@ -11,7 +11,7 @@
 				Password : <?php echo $biodata[0]->password; ?></p>
 			</div>
 		</div>
-	<a href="../update_akun/<?php echo $biodata[0]->id_member; ?>" class="btn btn-primary">Edit Akun</a>
+	<a href="../update_akun/<?php echo $this->session->userdata('id'); ?>" class="btn btn-primary">Edit Akun</a>
 	</div>
 </div>
 <?php $this->load->view('member/template/footer'); ?>

@@ -57,6 +57,8 @@
 	<link rel="stylesheet" href="<?php echo base_url() ?>assets/user/css/flexslider.css">
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="<?php echo base_url() ?>assets/user/css/style.css">
+	<!-- DataTables -->
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/dt/datatables.min.css"/>
 
 	<!-- Modernizr JS -->
 	<script src="<?php echo base_url() ?>assets/user/js/modernizr-2.6.2.min.js"></script>
@@ -67,9 +69,16 @@
 
 	</head>
 	<body>
-	
-	
 	<div id="fh5co-page">
+	<?php if($this->session->flashdata('user_loggedin')): ?>
+ 	<?php echo '<p class="alert alert-success">'.$this->session->flashdata('user_loggedin').'</p>'; ?>
+   	<?php endif; ?>
+   	<?php if($this->session->flashdata('login_failed')): ?>
+     	<?php echo '<p class="alert alert-danger">'.$this->session->flashdata('login_failed').'</p>'; ?>
+   	<?php endif; ?>
+   	<?php if($this->session->flashdata('user_loggedout')): ?>
+     	<?php echo '<p class="alert alert-success">'.$this->session->flashdata('user_loggedout').'</p>'; ?>
+   	<?php endif; ?>
 	<header id="fh5co-header" role="banner">
 		<div class="container">
 			<div class="header-inner">
@@ -77,10 +86,10 @@
 				<nav role="navigation">
 					<ul>
 						<li><a href="work.html">Beranda</a></li>
-						<li><a href="services.html">Profile</a></li>
-						<li><a href="pricing.html">Lowongan</a></li>
+						<li><a href="<?php echo base_url('perusahaan/profile/'.$this->session->userdata('id')) ?>">Profile</a></li>
+						<li><a href="<?php echo base_url('perusahaan/lowongan/'.$this->session->userdata('id')) ?>">Lowongan</a></li>
 						<li><a href="about.html">Pendaftar</a></li>
-						<li><a href="<?php echo base_url() ?>login/logout">Logout</a></li>
+						<li class="cta"><a href="<?php echo base_url() ?>login/logout">Logout</a></li>
 					</ul>
 				</nav>
 			</div>
@@ -105,12 +114,5 @@
 		  	</ul>
 	  	</div>
 	</aside>
-	<?php if($this->session->flashdata('user_loggedin')): ?>
-     	<?php echo '<p class="alert alert-success">'.$this->session->flashdata('user_loggedin').'</p>'; ?>
-   	<?php endif; ?>
-   	<?php if($this->session->flashdata('login_failed')): ?>
-     	<?php echo '<p class="alert alert-danger">'.$this->session->flashdata('login_failed').'</p>'; ?>
-   	<?php endif; ?>
-   	<?php if($this->session->flashdata('user_loggedout')): ?>
-     	<?php echo '<p class="alert alert-success">'.$this->session->flashdata('user_loggedout').'</p>'; ?>
-   	<?php endif; ?>
+	
+   </div>
