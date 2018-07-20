@@ -19,4 +19,4 @@ Kelompok : 8
 *******************
 Anggota :
 Eka Dewi Nur Anggraeni	(1631710127)
-Feri	()
+Anggun Widiyaferi Janitra	(1631710045)
