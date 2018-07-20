@@ -19,12 +19,14 @@ $level = $this->uri->segment(3);
     <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/css/default.css"/>
 </head>
 <body>
+
     <a href="<?= base_url() ?>login" class="btn btn-danger" style="float: left;">
         Kembali
     </a>
     <?php if ($level == 3): ?>
         <?php echo form_open('login/daftar/'.$level, array('enctype'=>'multipart/form-data', 'class'=>'register')); ?>
         <h1>Registration as Member</h1>
+        <?php echo validation_errors(); ?>
         <?php
         if (isset($message)) {
             echo '<h3 class="text-danger">'.$message.'</h3>';
@@ -34,22 +36,22 @@ $level = $this->uri->segment(3);
             <legend>Account Details</legend>
             <p>
                 <label>Username :</label>
-                <input type="text" name="username" id="inputUsername" required="required">
+                <input type="text" name="username" id="inputUsername" >
             </p>
             <p>
                 <label>Password :</label>
-                <input type="password" name="password" id="inputPassword" required="required">
+                <input type="password" name="password" id="inputPassword" >
             </p>
         </fieldset>
         <fieldset class="row2">
             <legend>Personal Details</legend>
             <p>
                 <label>Nama Lengkap :</label>
-                <input type="text" name="nama_member" id="inputNama_member" class="long" required="required">
+                <input type="text" name="nama_member" id="inputNama_member" class="long" >
             </p>
             <p>
                 <label>Agama :</label>
-                <select name="agama" id="inputAgama" class="" required="required">
+                <select name="agama" id="inputAgama" class="" >
                     <option value="islam">Islam</option>
                     <option value="kristen">Kristen</option>
                     <option value="budha">Budha</option>
@@ -62,7 +64,7 @@ $level = $this->uri->segment(3);
             </p>
             <p>
                 <label>Email :</label>
-                <input type="email" name="email" id="inputEmail" required="required">
+                <input type="email" name="email" id="inputEmail" >
             </p>
             <p>
                 <label>Alamat :</label>
@@ -80,11 +82,11 @@ $level = $this->uri->segment(3);
             </p>
             <p>
                 <label>Tanggal Lahir :</label>
-                <input type="date" name="tanggal_lahir" id="inputTgl_lahir" required="required">
+                <input type="date" name="tanggal_lahir" id="inputTgl_lahir" >
             </p>
             <p>
                 <label>Foto :</label>
-                <input type="file" name="foto_member" class="long" required="required">
+                <input type="file" name="foto_member" class="long" >
             </p>
             <p>
                 <label>Type User :</label>
@@ -101,6 +103,7 @@ $level = $this->uri->segment(3);
         <?php elseif ($level == 2): ?>
             <?php echo form_open('login/daftar/'.$level, array('enctype'=>'multipart/form-data', 'class'=>'register')); ?>
             <h1>Registration as Company</h1>
+            <?php echo validation_errors(); ?>
             <?php
             if (isset($message)) {
                 echo '<h3 class="text-danger">'.$message.'</h3>';
@@ -111,22 +114,22 @@ $level = $this->uri->segment(3);
                     <legend>Account Details</legend>
                     <p>
                         <label>Username :</label>
-                        <input type="text" name="username" id="inputUsername" required="required">
+                        <input type="text" name="username" id="inputUsername" >
                     </p>
                     <p>
                         <label>Password :</label>
-                        <input type="password" name="password" id="inputPassword" required="required">
+                        <input type="password" name="password" id="inputPassword" >
                     </p>
                 </fieldset>
                 <fieldset class="row2">
                     <legend>Company Details</legend>
                     <p>
                         <label>Nama Perusahaan </label>
-                        <input type="text" name="nama_perusahaan" id="inputNama_perusahaan" class="long" required="required">
+                        <input type="text" name="nama_perusahaan" id="inputNama_perusahaan" class="long" >
                     </p>
                     <p>
                         <label>Jenis Perusahaan </label>
-                        <select name="id_jenis_perusahaan" id="input" class="" required="required">
+                        <select name="id_jenis_perusahaan" id="input" class="" >
                             <?php foreach ($jenis_perusahaan as $value): ?>
                                 <option value="<?= $value->id_jenis_perusahaan ?>"><?= $value->jenis_perusahaan ?></option>
                             <?php endforeach ?>
@@ -142,7 +145,7 @@ $level = $this->uri->segment(3);
                     </p>
                     <p>
                         <label>Email :</label>
-                        <input type="email" name="email" id="inputEmail" required="required">
+                        <input type="email" name="email" id="inputEmail" >
                     </p>
                     <p>
                         <label>Alamat :</label>
@@ -169,7 +172,7 @@ $level = $this->uri->segment(3);
                     </p>
                     <p>
                         <label>Foto :</label>
-                        <input type="file" name="foto_perusahaan" class="long" required="required">
+                        <input type="file" name="foto_perusahaan" class="long" >
                     </p>
                     <!-- <div class="infobox"><h4>Helpful Information</h4>
                         <p>Here comes some explaining text, sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>

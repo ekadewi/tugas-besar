@@ -19,9 +19,93 @@ class Login extends CI_Controller {
 		$this->load->model('DataUser');
 		// $data['level'] = $level;
 		$data['jenis_perusahaan'] = $this->DataUser->get_jenis_perusahaan();
+		if($level==3){
+$this->form_validation->set_rules('username', 'Username', 'required',
+			array(
+				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
+			));
+$this->form_validation->set_rules('password', 'Password', 'required',
+			array(
+				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
+			));
+$this->form_validation->set_rules('nama_member', 'Nama Member', 'required',
+			array(
+				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
+			));
+$this->form_validation->set_rules('agama', 'Agama', 'required',
+			array(
+				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
+			));
+$this->form_validation->set_rules('no_telp', 'No Telepon', 'required',
+			array(
+				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
+			));
+$this->form_validation->set_rules('alamat', 'Alamat', 'required',
+			array(
+				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
+			));
+$this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required',
+			array(
+				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
+			));
+$this->form_validation->set_rules('tanggal_lahir', 'Tanggal Lahir', 'required',
+			array(
+				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
+			));
 
-		if ($this->input->post('submit')) {
-			
+$this->form_validation->set_rules('type_user', 'Tipe User', 'required',
+			array(
+				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
+			));
+}else if($level==2){
+	$this->form_validation->set_rules('username', 'Username', 'required',
+			array(
+				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
+			));
+$this->form_validation->set_rules('password', 'Password', 'required',
+			array(
+				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
+			));
+$this->form_validation->set_rules('nama_perusahaan', 'Nama Perusahaan', 'required',
+			array(
+				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
+			));
+$this->form_validation->set_rules('no_telp', 'No Telepon', 'required',
+			array(
+				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
+			));
+$this->form_validation->set_rules('fax', 'Fax', 'required',
+			array(
+				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
+			));
+$this->form_validation->set_rules('email', 'Email', 'required',
+			array(
+				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
+			));
+$this->form_validation->set_rules('alamat', 'Alamat', 'required',
+			array(
+				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
+			));
+$this->form_validation->set_rules('webiste', 'Web', 'required',
+			array(
+				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
+			));
+$this->form_validation->set_rules('visi', 'Visi', 'required',
+			array(
+				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
+			));
+$this->form_validation->set_rules('misi', 'Misi', 'required',
+			array(
+				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
+			));
+
+}
+
+
+
+		if ($this->form_validation->run() === FALSE) {
+			$this->load->view('login/daftarMember', $data);
+		} else {
 			$upload = $this->DataUser->upload();
 
 			if ($upload['result'] == 'success') {
@@ -45,7 +129,7 @@ class Login extends CI_Controller {
 			}
 		}
 
-		$this->load->view('login/daftarMember', $data);
+	
 	}
 
 	public function cek_login()
