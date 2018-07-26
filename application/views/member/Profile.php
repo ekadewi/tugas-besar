@@ -17,7 +17,7 @@
 				</p>
 			</div>
 			<div class="col-md-6 col-md-offset-3 text-center fh5co-heading animate-box">
-				<a href="../update/<?php echo $this->session->userdata('id'); ?>" class="btn btn-primary"><i class="icon-edit"></i>Edit Profile</a>
+				<a href="<?php echo base_url('member/update/'.$this->session->userdata('id')) ?>" class="btn btn-primary"><i class="icon-edit"></i>Edit Profile</a>
 				<a href="<?php echo base_url('member/update_foto/'.$this->session->userdata('id')) ?>" class="btn btn-primary"><i class="icon-camera"></i>Hapus Foto</a>
 			</div>
 		</div>

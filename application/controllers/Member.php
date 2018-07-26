@@ -18,18 +18,20 @@ class Member extends CI_Controller {
 		$this->load->view('member/home', $data);		
 	}
 
-	public function Profile($id)
+	public function Profile()
 	{
+		$id = $this->session->userdata('id');
 		$data['biodata'] = $this->dataMember->get_profile($id);
 		$this->load->view('member/profile', $data);
 	}
 
-	public function Akun($id)
+	public function Akun()
 	{
 		if ($this->session->userdata('level') != 4) {
 			$this->session->set_flashdata('not_allow', 'maaf anda bukan member premium, silahkan hubungi admin untuk mengganti type member');
 			redirect('member/profile/'.$this->session->userdata('id'));
 		}
+		$id = $this->session->userdata('id');
 		$data['biodata'] = $this->dataMember->get_profile($id);
 		$this->load->view('member/akun', $data);
 	}

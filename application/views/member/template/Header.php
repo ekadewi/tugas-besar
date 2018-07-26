@@ -12,7 +12,7 @@
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Member</title>
+	<title>Loker/Member</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Free HTML5 Website Template by FreeHTML5.co" />
 	<meta name="keywords" content="free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
@@ -78,7 +78,7 @@
 				<nav role="navigation">
 					<ul>
 						<li><a href="<?php echo base_url('member') ?>">Beranda</a></li>
-						<li><a href="<?php echo base_url('member/profile/'.$this->session->userdata('id')) ?>">Profile</a></li>
+						<li><a href="<?php echo base_url('member/profile/') ?>">Profile</a></li>
 						<li><a href="<?php echo base_url('member/perusahaan') ?>">Perusahaan</a></li>
 						<li><a href="<?php echo base_url('member/lowongan') ?>">Lowongan</a></li>
 						<li><a href="<?php echo base_url('member/history') ?>">History</a></li>
