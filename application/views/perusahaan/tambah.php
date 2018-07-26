@@ -10,7 +10,7 @@
 					<td>Lowongan</td>
 					<td>:</td>
 					<td>
-						<input type="text" name="lowongan" id="inputLowongan" class="form-control" required="required" value="<?php echo set_value('lowongan'); ?>">
+						<input type="text" name="lowongan" id="inputLowongan" autofocus="" class="form-control" value="<?php echo set_value('lowongan'); ?>">
 					</td>
 				</tr>
 				<tr>
@@ -31,7 +31,7 @@
 					<td>Jumlah</td>
 					<td>:</td>
 					<td>
-						<input type="text" name="jumlah" id="inputJumlah" class="form-control" required="required" value="<?php echo set_value('jumlah'); ?>">
+						<input type="text" name="jumlah" id="inputJumlah" class="form-control" value="<?php echo set_value('jumlah'); ?>">
 					</td>
 				</tr>
 				<tr>

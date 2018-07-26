@@ -25,7 +25,7 @@
 									<td>Jenis Perusahaan</td>
 									<td>:</td>
 									<td>
-										<input type="text" class="form-control" name="jenis_perusahaan" style="width: 500px;" required>
+										<input type="text" class="form-control" name="jenis_perusahaan" autofocus="" style="width: 500px;" required>
 										<div class="invalid-feedback">Isi Kolom Jenis Perusahaan!</div>
 									</td>
 								</tr>

@@ -36,22 +36,26 @@ $level = $this->uri->segment(3);
             <legend>Account Details</legend>
             <p>
                 <label>Username :</label>
-                <input type="text" name="username" id="inputUsername" >
+                <input type="text" name="username" id="inputUsername" autofocus="" value="<?php echo set_value('username'); ?>">
             </p>
             <p>
                 <label>Password :</label>
-                <input type="password" name="password" id="inputPassword" >
+                <input type="password" name="password" id="inputPassword" value="<?php echo set_value('password'); ?>">
+            </p>
+            <p>
+                <label>Password konfirmasi :</label>
+                <input type="password" name="passwordkon" id="" >
             </p>
         </fieldset>
         <fieldset class="row2">
             <legend>Personal Details</legend>
             <p>
                 <label>Nama Lengkap :</label>
-                <input type="text" name="nama_member" id="inputNama_member" class="long" >
+                <input type="text" name="nama_member" id="inputNama_member" class="long" value="<?php echo set_value('nama_member'); ?>">
             </p>
             <p>
                 <label>Agama :</label>
-                <select name="agama" id="inputAgama" class="" >
+                <select name="agama" id="inputAgama" class="" value="<?php echo set_value('agama'); ?>">
                     <option value="islam">Islam</option>
                     <option value="kristen">Kristen</option>
                     <option value="budha">Budha</option>
@@ -60,15 +64,15 @@ $level = $this->uri->segment(3);
             </p>
             <p>
                 <label>No. Telpon :</label>
-                <input type="tel" name="no_telp" id="inputNo_telp" maxlength="12">
+                <input type="tel" name="no_telp" id="inputNo_telp" maxlength="12" value="<?php echo set_value('no_telp'); ?>">
             </p>
             <p>
                 <label>Email :</label>
-                <input type="email" name="email" id="inputEmail" >
+                <input type="email" name="email" id="inputEmail" value="<?php echo set_value('email'); ?>">
             </p>
             <p>
                 <label>Alamat :</label>
-                <textarea name="alamat"></textarea>
+                <textarea name="alamat"><?php echo set_value('alamat'); ?></textarea>
             </p>
         </fieldset>
         <fieldset class="row3">
@@ -82,11 +86,11 @@ $level = $this->uri->segment(3);
             </p>
             <p>
                 <label>Tanggal Lahir :</label>
-                <input type="date" name="tanggal_lahir" id="inputTgl_lahir" >
+                <input type="date" name="tanggal_lahir" id="inputTgl_lahir" value="<?php echo set_value('tanggal_lahir'); ?>">
             </p>
             <p>
                 <label>Foto :</label>
-                <input type="file" name="foto_member" class="long" >
+                <input type="file" name="foto_member" class="long" value="<?php echo set_value('foto_member'); ?>">
             </p>
             <p>
                 <label>Type User :</label>
@@ -114,22 +118,26 @@ $level = $this->uri->segment(3);
                     <legend>Account Details</legend>
                     <p>
                         <label>Username :</label>
-                        <input type="text" name="username" id="inputUsername" >
+                        <input type="text" name="username" autofocus="" id="inputUsername" value="<?php echo set_value('username'); ?>">
                     </p>
                     <p>
                         <label>Password :</label>
-                        <input type="password" name="password" id="inputPassword" >
+                        <input type="password" name="password" id="inputPassword" value="<?php echo set_value('password'); ?>">
+                    </p>
+                    <p>
+                        <label>Password konfirmasi :</label>
+                        <input type="password" name="passwordkon" id="" >
                     </p>
                 </fieldset>
                 <fieldset class="row2">
                     <legend>Company Details</legend>
                     <p>
                         <label>Nama Perusahaan </label>
-                        <input type="text" name="nama_perusahaan" id="inputNama_perusahaan" class="long" >
+                        <input type="text" name="nama_perusahaan" id="inputNama_perusahaan" class="long" value="<?php echo set_value('nama_perusahaan'); ?>">
                     </p>
                     <p>
                         <label>Jenis Perusahaan </label>
-                        <select name="id_jenis_perusahaan" id="input" class="" >
+                        <select name="id_jenis_perusahaan" id="input" class="" value="<?php echo set_value('id_jenis_perusahaan'); ?>">
                             <?php foreach ($jenis_perusahaan as $value): ?>
                                 <option value="<?= $value->id_jenis_perusahaan ?>"><?= $value->jenis_perusahaan ?></option>
                             <?php endforeach ?>
@@ -137,42 +145,42 @@ $level = $this->uri->segment(3);
                     </p>
                     <p>
                         <label>No. Telpon :</label>
-                        <input type="tel" name="no_telp" id="inputNo_telp" maxlength="12">
+                        <input type="tel" name="no_telp" id="inputNo_telp" maxlength="12" value="<?php echo set_value('no_telp'); ?>">
                     </p>
                     <p>
                         <label>Fax :</label>
-                        <input type="tel" name="fax" id="inputFax" maxlength="12">
+                        <input type="tel" name="fax" id="inputFax" maxlength="12" value="<?php echo set_value('fax'); ?>">
                     </p>
                     <p>
                         <label>Email :</label>
-                        <input type="email" name="email" id="inputEmail" >
+                        <input type="email" name="email" id="inputEmail" value="<?php echo set_value('email'); ?>">
                     </p>
                     <p>
                         <label>Alamat :</label>
-                        <textarea name="alamat"></textarea>
+                        <textarea name="alamat"><?php echo set_value('alamat'); ?></textarea>
                     </p>
                 </fieldset>
                 <fieldset class="row3">
                     <legend>Further Information</legend>
                     <p>
                         <label>Website :</label>
-                        <input type="text" name="website" id="inputWebsite" class="long">
+                        <input type="text" name="website" id="inputWebsite" class="long" value="<?php echo set_value('website'); ?>">
                     </p>
                     <p>
                         <label>Visi :</label>
-                        <input type="text" name="visi" id="inputVisi" class="long">
+                        <input type="text" name="visi" id="inputVisi" class="long" value="<?php echo set_value('visi'); ?>">
                     </p>
                     <p>
                         <label>Misi :</label>
-                        <textarea name="misi"></textarea>
+                        <textarea name="misi"><?php echo set_value('misi'); ?></textarea>
                     </p>
                     <p>
                         <label>Tahun Berdiri :</label>
-                        <input type="number" name="tahun_berdiri" id="inputThaun" min="1900" max="2010">
+                        <input type="number" name="tahun_berdiri" id="inputThaun" min="1900" max="<?php echo date('Y') ?>" value="<?php echo set_value('tahun_berdiri'); ?>">
                     </p>
                     <p>
                         <label>Foto :</label>
-                        <input type="file" name="foto_perusahaan" class="long" >
+                        <input type="file" name="foto_perusahaan" class="long" value="<?php echo set_value('foto_perusahaan'); ?>">
                     </p>
                     <!-- <div class="infobox"><h4>Helpful Information</h4>
                         <p>Here comes some explaining text, sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>

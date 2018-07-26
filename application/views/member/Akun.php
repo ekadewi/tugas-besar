@@ -8,7 +8,7 @@
 			<div class="col-md-6 col-md-offset-3 text-center fh5co-heading animate-box">
 				<h2><?php echo $biodata[0]->nama_member; ?></h2>
 				<p>Username : <?php echo $biodata[0]->username; ?> <br>
-				Password : <?php echo $biodata[0]->password; ?></p>
+				<!-- Password : <?php echo $biodata[0]->password; ?></p> -->
 			</div>
 		</div>
 	<a href="../update_akun/<?php echo $this->session->userdata('id'); ?>" class="btn btn-primary">Edit Akun</a>

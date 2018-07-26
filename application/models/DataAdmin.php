@@ -37,8 +37,10 @@ class DataAdmin extends CI_Model {
 	}
 
 	public function get_member(){
-		$query = $this->db->get('member');
-		return $query->result();
+		$this->db->select('*');
+		$this->db->from('member');
+		$this->db->order_by('id_member', 'DESC');
+		return $this->db->get()->result();
 	}
 
 	public function upload()
@@ -59,12 +61,23 @@ class DataAdmin extends CI_Model {
 		}
 	}
 
-	public function insert_user($level)
+	public function insert_user()
 	{
 		$data = array(
 			'username'	=> $this->input->post('username'),
-			'password'	=> $this->input->post('password'),
-			'level'		=> $level
+			'password'	=> md5($this->input->post('password')),
+			'id_level'	=> $this->input->post('type_user')
+		);
+
+		$this->db->insert('user', $data);
+	}
+
+	public function insert_user_perusahaan($id)
+	{
+		$data = array(
+			'username'	=> $this->input->post('username'),
+			'password'	=> md5($this->input->post('password')),
+			'id_level'	=> $id
 		);
 
 		$this->db->insert('user', $data);
@@ -99,15 +112,18 @@ class DataAdmin extends CI_Model {
 		$this->db->delete('member');
 	}
 
-	public function delete_user($fk_user)
+	public function delete_user($id_user)
 	{
-		$this->db->where('id_user', $fk_user);
+		$this->db->where('id_user', $id_user);
 		$this->db->delete('user');
 	}
 
 	public function get_lowongan(){
-		$query = $this->db->get('lowongan');
-		return $query->result();
+		$this->db->select('*');
+		$this->db->from('lowongan');
+		$this->db->join('perusahaan', 'lowongan.id_perusahaan = perusahaan.id_perusahaan');
+		$this->db->order_by('id_lowongan', 'desc');
+		return $this->db->get()->result();
 	}
 
 	public function delete_lowongan($id){
@@ -116,8 +132,13 @@ class DataAdmin extends CI_Model {
 	}
 
 	public function get_pendaftar(){
-		$query = $this->db->get('pendaftar');
-		return $query->result();
+		$this->db->select('*');
+		$this->db->from('pendaftar');
+		$this->db->join('lowongan', 'lowongan.id_lowongan = pendaftar.id_lowongan');
+		$this->db->join('perusahaan', 'lowongan.id_perusahaan = perusahaan.id_perusahaan');
+		$this->db->join('member', 'pendaftar.id_member = member.id_member');
+		$this->db->order_by('id_pendaftar', 'desc');
+		return $this->db->get()->result();
 	}
 
 	public function delete_pendaftar($id){
@@ -126,15 +147,16 @@ class DataAdmin extends CI_Model {
 	}
 
 	public function get_perusahaan(){
-		$query = $this->db->get('perusahaan');
-		return $query->result();
+		$this->db->select('*');
+		$this->db->from('perusahaan');
+		$this->db->order_by('id_perusahaan', 'desc');
+		return $this->db->get()->result();
 	}
 
 	public function delete_perusahaan($id){
 		$this->db->where('id_perusahaan', $id);
 		$this->db->delete('perusahaan');
 	}
-
 	public function count_member()
 	{
 		$query = $this->db->query('select count(*) as jumlah from member');
@@ -177,7 +199,7 @@ class DataAdmin extends CI_Model {
 			);
 			$datauser = array(
 				'username'	=> $this->input->post('username'),
-				'password'	=> $this->input->post('password')
+				'id_level'	=> $this->input->post('type_user')
 			);
 		} else {
 			$data = array(
@@ -191,7 +213,7 @@ class DataAdmin extends CI_Model {
 			);
 			$datauser = array(
 				'username'	=> $this->input->post('username'),
-				'password'	=> $this->input->post('password')
+				'id_level'	=> $this->input->post('type_user')
 			);
 		}
 		$this->db->where('id_member', $id);
@@ -202,8 +224,11 @@ class DataAdmin extends CI_Model {
 
 	public function get_single_perusahaan($id)
 	{
-		$query = $this->db->query('select * from perusahaan where id_perusahaan='.$id);
-		return $query->result();	
+		$this->db->select('*');
+		$this->db->from('perusahaan');
+		$this->db->join('user', 'perusahaan.fk_user = user.id_user');
+		$this->db->where('perusahaan.id_perusahaan='.$id);
+		return $this->db->get()->result();
 	}
 
 	public function insert_perusahaan($id_user, $upload)
@@ -224,6 +249,50 @@ class DataAdmin extends CI_Model {
 		);
 
 		$this->db->insert('perusahaan', $data);
+	}
+
+	public function update_perusahaan($upload, $id, $fk_user)
+	{
+		if ($upload['result']=='success') {
+			$data = array(
+				'nama_perusahaan' => $this->input->post('nama_perusahaan'),
+				'id_jenis_perusahaan' => $this->input->post('id_jenis_perusahaan'),
+				'alamat' => $this->input->post('alamat'),
+				'no_telp' => $this->input->post('no_telp'),
+				'fax' => $this->input->post('fax'),
+				'email' => $this->input->post('email'),
+				'website' => $this->input->post('website'),
+				'visi' => $this->input->post('visi'),
+				'visi' => $this->input->post('visi'),
+				'misi' => $this->input->post('misi'),
+				'tahun_berdiri' => $this->input->post('tahun_berdiri'),
+				'foto' => $upload['file']['file_name']
+			);
+			$datauser = array(
+				'username'	=> $this->input->post('username')
+			);
+		} else {
+			$data = array(
+				'nama_perusahaan' => $this->input->post('nama_perusahaan'),
+				'id_jenis_perusahaan' => $this->input->post('id_jenis_perusahaan'),
+				'alamat' => $this->input->post('alamat'),
+				'no_telp' => $this->input->post('no_telp'),
+				'fax' => $this->input->post('fax'),
+				'email' => $this->input->post('email'),
+				'website' => $this->input->post('website'),
+				'visi' => $this->input->post('visi'),
+				'visi' => $this->input->post('visi'),
+				'misi' => $this->input->post('misi'),
+				'tahun_berdiri' => $this->input->post('tahun_berdiri'),
+			);
+			$datauser = array(
+				'username'	=> $this->input->post('username')
+			);
+		}
+		$this->db->where('id_perusahaan', $id);
+		$this->db->update('perusahaan', $data);
+		$this->db->where('id_user', $fk_user);
+		$this->db->update('user', $datauser);
 	}
 
 }

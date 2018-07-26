@@ -26,7 +26,7 @@
 							<tr>
 								<td>Nama Perusahaan</td>
 								<td>:</td>
-								<td><input type="text" name="nama" style="width: 500px;" value="<?php echo set_value('nama'); ?>"></td>
+								<td><input type="text" name="nama" autofocus="" style="width: 500px;" value="<?php echo set_value('nama'); ?>"></td>
 							</tr>
 							<tr>
 								<td>Alamat</td>
@@ -66,7 +66,7 @@
 							<tr>
 								<td>Tahun Berdiri</td>
 								<td>:</td>
-								<td><input type="text" name="tahun_berdiri" style="width: 500px;" value="<?php echo set_value('tahun_berdiri'); ?>"></td>
+								<td><input type="number" name="tahun_berdiri" id="" min="1900" max="<?php echo date('Y') ?>" value="<?php echo set_value('tahun_berdiri'); ?>"></td>
 							</tr>
 							<tr>
 								<td>Jenis Perusahaan</td>

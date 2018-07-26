@@ -7,6 +7,7 @@ class Admin extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('dataAdmin');
+		$this->load->model('dataUser');
 		// if ($this->session->userdata('level') != 1) {
 		// 	redirect('login','refresh');
 		// }
@@ -79,10 +80,10 @@ class Admin extends CI_Controller {
 	{
 
 			$data = array();
-			$this->form_validation->set_rules('nama','nama', 'required|alpha',
+			$this->form_validation->set_rules('nama','nama', 'required',
 				array(
-					'required' 	=> 'kolom %s tidak boleh kosong!!!!!!!',
-					'alpha' 	=> 'kolom %s hanya boleh diisi huruf'
+					'required' 	=> 'kolom %s tidak boleh kosong!!!!!!!'
+					// 'alpha' => 'kolom %s hanya boleh diisi huruf dan spasi!!!!!!!'
 				));
 			$this->form_validation->set_rules('jk','jk', 'required',
 				array(
@@ -124,7 +125,7 @@ class Admin extends CI_Controller {
 		}else{
 			$upload = $this->dataAdmin->upload();
 			if ($upload['result'] == 'success') {
-				$this->dataAdmin->insert_user(3);
+				$this->dataAdmin->insert_user();
 				$user = $this->dataAdmin->get_user($this->input->post('username'));
 				$this->dataAdmin->insert_member($user[0]->id_user, $upload);
 				redirect('admin/member');
@@ -178,6 +179,8 @@ class Admin extends CI_Controller {
 
 	public function delete_perusahaan($id)
 	{
+		$fk = $this->dataAdmin->get_single_perusahaan($id);
+		$this->dataAdmin->delete_user($fk[0]->id_user);
 		$this->dataAdmin->delete_perusahaan($id);
 		redirect('admin/perusahaan');
 	}
@@ -185,10 +188,9 @@ class Admin extends CI_Controller {
 	public function update_member($id)
 	{
 		$data['detail'] = $this->dataAdmin->get_single_member($id);
-		$this->form_validation->set_rules('nama', 'Nama', 'required|alpha',
+		$this->form_validation->set_rules('nama', 'Nama', 'required',
 			array(
-				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!',
-				'alpha' 	=> 'kolom %s hanya boleh diisi huruf'
+				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
 			));
 		$this->form_validation->set_rules('alamat', 'alamat', 'required',
 			array(
@@ -209,10 +211,6 @@ class Admin extends CI_Controller {
 				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!',
 				'is_unique'		=> 'isi dari kolom %s sudah ada'
 			));
-		$this->form_validation->set_rules('password', 'password', 'required',
-			array(
-				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
-			));
 		if($this->form_validation->run()==False){
 			$this->load->view('admin/update_member', $data);
 		} else {
@@ -232,18 +230,142 @@ class Admin extends CI_Controller {
 	{
 		$data = array();
 		$data['jenis'] = $this->dataAdmin->get_jenis_perusahaan();
-		if ($this->input->post('simpan')) {
-			$upload = $this->dataAdmin->upload();
-			if ($upload['result'] == 'success') {
-				$this->dataAdmin->insert_user(2);
-				$user = $this->dataAdmin->get_user($this->input->post('username'));
-				$this->dataAdmin->insert_perusahaan($user[0]->id_user, $upload);
-				redirect('admin/perusahaan');
-			}else{
-				$data['message'] = $upload['error'];
+		$this->form_validation->set_rules('nama', 'Nama', 'required',
+			array(
+				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
+			));
+		$this->form_validation->set_rules('alamat', 'alamat', 'required',
+			array(
+				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
+			));
+		$this->form_validation->set_rules('no_telp', 'NoTelp', 'required|numeric',
+			array(
+				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!',
+				'numeric' 	=> 'kolom %s hanya boleh diisi angka'
+			));
+		$this->form_validation->set_rules('email', 'Email', 'required|valid_email',
+			array(
+				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!',
+				'valid_email' 	=> 'kolom %s harus diisi dengan format email'
+			));
+		$this->form_validation->set_rules('website', 'Website', 'required|valid_url',
+			array(
+				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!',
+				'valid_url'		=> 'kolom %s harus diisi dengan format url'
+			));
+		$this->form_validation->set_rules('fax', 'Fax', 'required|numeric',
+			array(
+				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!',
+				'numeric' 	=> 'kolom %s hanya boleh diisi angka'
+			));
+		$this->form_validation->set_rules('username', 'Username', 'required|is_unique[user.username]',
+			array(
+				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!',
+				'is_unique'		=> 'isi dari kolom %s sudah ada'
+			));
+		$this->form_validation->set_rules('visi', 'Visi', 'required|min_length[10]',
+			array(
+				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!',
+				'min_length' => 'kolom %s diisi min 10 karakter!!!!!!!'
+			));
+		$this->form_validation->set_rules('misi', 'Misi', 'required|min_length[15]',
+			array(
+				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!',
+				'min_length'	=> 'kolom %s diisi min 15 karakter!!!!!!!'
+			));
+		$this->form_validation->set_rules('tahun_berdiri', 'Tahun Berdiri', 'required',
+			array(
+				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
+			));
+		$this->form_validation->set_rules('password', 'password', 'required',
+			array(
+				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
+			));
+		if($this->form_validation->run()==False) {
+			$this->load->view('admin/insert_perusahaan', $data);
+		} else {
+			if ($this->input->post('simpan')) {
+		// echo var_dump($this->input->post('tahun_berdiri'));
+		// die();
+				$upload = $this->dataAdmin->upload();
+				if ($upload['result'] == 'success') {
+					$this->dataAdmin->insert_user_perusahaan(2);
+					$user = $this->dataAdmin->get_user($this->input->post('username'));
+					$this->dataAdmin->insert_perusahaan($user[0]->id_user, $upload);
+					redirect('admin/perusahaan');
+				}else{
+					$data['message'] = $upload['error'];
+				}
 			}
+			$this->load->view('admin/insert_perusahaan', $data);
 		}
-		$this->load->view('admin/insert_perusahaan', $data);
+		
+	}
+
+	public function update_perusahaan($id)
+	{
+		$data['detail'] = $this->dataAdmin->get_single_perusahaan($id);
+		// echo var_dump($data['detail']);
+		// die();
+		$data['jenis_perusahaan'] = $this->dataUser->get_jenis_perusahaan();
+
+		$this->form_validation->set_rules('nama_perusahaan', 'Nama', 'required',
+			array(
+				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
+			));
+		$this->form_validation->set_rules('alamat', 'alamat', 'required',
+			array(
+				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
+			));
+		$this->form_validation->set_rules('no_telp', 'NoTelp', 'required|numeric',
+			array(
+				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!',
+				'numeric' 	=> 'kolom %s hanya boleh diisi angka'
+			));
+		$this->form_validation->set_rules('email', 'Email', 'required|valid_email',
+			array(
+				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!',
+				'valid_email' 	=> 'kolom %s harus diisi dengan format email'
+			));
+		$this->form_validation->set_rules('website', 'Website', 'required',
+			array(
+				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
+			));
+		$this->form_validation->set_rules('fax', 'Fax', 'required|numeric',
+			array(
+				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!',
+				'numeric' 	=> 'kolom %s hanya boleh diisi angka'
+			));
+		$this->form_validation->set_rules('username', 'Username', 'required|is_unique[user.username]',
+			array(
+				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!',
+				'is_unique'		=> 'isi dari kolom %s sudah ada'
+			));
+		$this->form_validation->set_rules('visi', 'Visi', 'required|min_length[10]',
+			array(
+				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!',
+				'min_length' => 'kolom %s diisi min 10 karakter!!!!!!!'
+			));
+		$this->form_validation->set_rules('misi', 'Misi', 'required|min_length[15]',
+			array(
+				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!',
+				'min_length' => 'kolom %s diisi min 15 karakter!!!!!!!'
+			));
+		$this->form_validation->set_rules('tahun_berdiri', 'Tahun Berdiri', 'required',
+			array(
+				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
+			));
+		if($this->form_validation->run()==False) {
+			$this->load->view('admin/update_perusahaan', $data);
+		} else {
+			if ($this->input->post('update')) {
+				$upload=$this->dataAdmin->upload();
+				$fk_user = $data['detail'][0]->fk_user;
+				$this->dataAdmin->update_perusahaan($upload, $id, $fk_user);
+				redirect('admin/perusahaan');
+			}
+			$this->load->view('admin/update_perusahaan', $data);
+		}
 	}
 
 }

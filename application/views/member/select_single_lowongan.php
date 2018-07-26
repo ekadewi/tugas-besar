@@ -21,14 +21,60 @@
 				<p><?php echo $profile[0]->persyaratan; ?></p>
 			</div>
 			<div class="col-md-12 text-center item-block animate-box table-bordered" style="background: #F0F8FF;">
+				<?php echo form_open_multipart('member/detail_lowongan/'.$profile[0]->id_lowongan); ?>
 				<br>
+				<?php if (isset($error)): ?>
+					<p class="text-danger"><?php echo $error ?></p>
+				<?php endif ?>
 				<h3>Daftarkan dirimu sekarang</h3>
-				<p>
-					Lampirkan CVmu disini untuk mendaftar :
-					<br>
-					<center><input type="file" class="" name="" required></center>
-				</p>
-				<p><a href="<?php echo base_url() ?>#" class="btn btn-primary btn-outline">Daftar</a></p>
+				<?php 
+					$terdaftar = false;
+					$limit = 0;
+					foreach ($pendaftar as $key) {
+						if ($key->id_member==$member[0]->id_member && $key->id_lowongan==$profile[0]->id_lowongan) {
+							$terdaftar = true;
+							$status = $key->status_daftar;
+						}
+						if ($this->session->userdata('level')==3) {
+							if ($key->id_member==$member[0]->id_member && $key->status_daftar=='baru') {
+								$limit += 1;
+							}					
+						}
+					}
+				?>
+				<?php if ($terdaftar): ?>
+					<p>
+						Anda sudah mendaftar lowongan ini.
+						<br>
+						<?php
+							switch ($status) {
+							 	case 'baru':
+							 		echo "Silahkan tunggu konfirmasi perusahaan";
+							 		break;
+							 	
+							 	case 'lolos':
+							 		echo "Selamat, anda lolos pendaftaran. silahkan hubungi perusahaan untuk lebih lanjut";
+							 		break;
+
+							 	case 'tidak lolos':
+							 		echo "Maaf, anda belum beruntung";
+							 		break;
+							 } 
+						?>
+					</p>
+				<?php else: ?>
+					<?php if ($limit>=3): ?>
+						<p class="text-danger text-center">Maaf, anda tidak boleh mendaftar lebih dari 3 lowongan</p>
+					<?php else: ?>
+						<p>
+							Lampirkan CVmu disini untuk mendaftar (*dalam format pdf) :
+							<br>
+							<center><input type="file" class="form-control" name="cv" required></center>
+						</p>
+						<p><input type="submit" name="daftar" value="Daftar" class="btn btn-primary btn-outline"></p>
+					<?php endif ?>
+				<?php endif ?>
+				<?php echo form_close(); ?>
 			</div>
 		</div>
 	</div>

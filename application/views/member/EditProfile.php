@@ -9,12 +9,12 @@
 		<div class="row">
 			<div class="table-responsive">
 	        	<h4 class="text text-danger"><?php echo validation_errors(); ?></h4>
-	        	<?php echo form_open_multipart('member/update/'.$biodata[0]->id_member);?>
+	        	<?php echo form_open_multipart('member/update/'.$biodata[0]->fk_user);?>
 				<table class="table table-responsive">
 					<tr>
 						<td>Nama</td>
 						<td>:</td>
-						<td><input type="text" name="nama" class="form-control" style="width: 500px;" value="<?php echo $biodata[0]->nama_member; ?>"></td>
+						<td><input type="text" autofocus="" name="nama" class="form-control" style="width: 500px;" value="<?php echo set_value('nama', $biodata[0]->nama_member); ?>"></td>
 					</tr>
 					<tr>
 						<td>Jenis Kelamin</td>
@@ -33,7 +33,7 @@
 					<tr>
 						<td>Tanggal Lahir</td>
 						<td>:</td>
-						<td><input type="date" name="tanggal_lahir" class="form-control" style="width: 500px;" value="<?php echo $biodata[0]->tanggal_lahir; ?>"></td>
+						<td><input type="date" name="tanggal_lahir" class="form-control" style="width: 500px;" value="<?php echo set_value('tanggal_lahir', $biodata[0]->tanggal_lahir); ?>"></td>
 					</tr>
 					<tr>
 						<td>Agama</td>
@@ -50,17 +50,17 @@
 					<tr>
 						<td>Alamat</td>
 						<td>:</td>
-						<td><input type="text" name="alamat" class="form-control" style="width: 800px;" value="<?php echo $biodata[0]->alamat; ?>"></td>
+						<td><input type="text" name="alamat" class="form-control" style="width: 800px;" value="<?php echo set_value('alamat', $biodata[0]->alamat); ?>"></td>
 					</tr>
 					<tr>
 						<td>No Telp</td>
 						<td>:</td>
-						<td><input type="text" name="no_telp" class="form-control" style="width: 500px;" value="<?php echo $biodata[0]->no_telp; ?>"></td>
+						<td><input type="text" name="no_telp" class="form-control" style="width: 500px;" value="<?php echo set_value('no_telp', $biodata[0]->no_telp); ?>"></td>
 					</tr>
 					<tr>
 						<td>Email</td>
 						<td>:</td>
-						<td><input type="text" name="email" class="form-control" style="width: 500px;" value="<?php echo $biodata[0]->email; ?>"></td>
+						<td><input type="text" name="email" class="form-control" style="width: 500px;" value="<?php echo set_value('email', $biodata[0]->email); ?>"></td>
 					</tr>
 					<tr>
 						<td>Foto</td>

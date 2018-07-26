@@ -20,86 +20,103 @@ class Login extends CI_Controller {
 		// $data['level'] = $level;
 		$data['jenis_perusahaan'] = $this->DataUser->get_jenis_perusahaan();
 		if($level==3){
-$this->form_validation->set_rules('username', 'Username', 'required',
-			array(
-				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
-			));
-$this->form_validation->set_rules('password', 'Password', 'required',
-			array(
-				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
-			));
-$this->form_validation->set_rules('nama_member', 'Nama Member', 'required',
-			array(
-				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
-			));
-$this->form_validation->set_rules('agama', 'Agama', 'required',
-			array(
-				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
-			));
-$this->form_validation->set_rules('no_telp', 'No Telepon', 'required',
-			array(
-				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
-			));
-$this->form_validation->set_rules('alamat', 'Alamat', 'required',
-			array(
-				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
-			));
-$this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required',
-			array(
-				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
-			));
-$this->form_validation->set_rules('tanggal_lahir', 'Tanggal Lahir', 'required',
-			array(
-				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
-			));
+			$this->form_validation->set_rules('username', 'Username', 'required|is_unique[user.username]',
+				array(
+					'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!',
+					'is_unique'		=> 'isi dari kolom %s sudah ada'
+				));
+			$this->form_validation->set_rules('password', 'Password', 'required',
+				array(
+					'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
+				));
+			$this->form_validation->set_rules('passwordkon', 'Password Konfirmasi', 'required|matches[password]',
+				array(
+					'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!',
+					'matches'		=> 'kolom %s tidak cocok dengan kolom Password'
+				));
+			$this->form_validation->set_rules('nama_member', 'Nama Member', 'required',
+				array(
+					'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
+				));
+			$this->form_validation->set_rules('agama', 'Agama', 'required',
+				array(
+					'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
+				));
+			$this->form_validation->set_rules('no_telp', 'No Telepon', 'required|numeric',
+				array(
+					'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!',
+					'numeric'	=> 'kolom %s hanya boleh diisi angka!!!!!!!'
+				));
+			$this->form_validation->set_rules('alamat', 'Alamat', 'required',
+				array(
+					'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
+				));
+			$this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required',
+				array(
+					'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
+				));
+			$this->form_validation->set_rules('tanggal_lahir', 'Tanggal Lahir', 'required',
+				array(
+					'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
+				));
 
-$this->form_validation->set_rules('type_user', 'Tipe User', 'required',
-			array(
-				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
-			));
-}else if($level==2){
-	$this->form_validation->set_rules('username', 'Username', 'required',
-			array(
-				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
-			));
-$this->form_validation->set_rules('password', 'Password', 'required',
-			array(
-				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
-			));
-$this->form_validation->set_rules('nama_perusahaan', 'Nama Perusahaan', 'required',
-			array(
-				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
-			));
-$this->form_validation->set_rules('no_telp', 'No Telepon', 'required',
-			array(
-				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
-			));
-$this->form_validation->set_rules('fax', 'Fax', 'required',
-			array(
-				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
-			));
-$this->form_validation->set_rules('email', 'Email', 'required',
-			array(
-				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
-			));
-$this->form_validation->set_rules('alamat', 'Alamat', 'required',
-			array(
-				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
-			));
-$this->form_validation->set_rules('webiste', 'Web', 'required',
-			array(
-				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
-			));
-$this->form_validation->set_rules('visi', 'Visi', 'required',
-			array(
-				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
-			));
-$this->form_validation->set_rules('misi', 'Misi', 'required',
-			array(
-				'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
-			));
+			$this->form_validation->set_rules('type_user', 'Tipe User', 'required',
+				array(
+					'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
+				));
+		}else if($level==2){
+			$this->form_validation->set_rules('username', 'Username', 'required|is_unique[user.username]',
+				array(
+					'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!',
+					'is_unique'		=> 'isi dari kolom %s sudah ada'
+				));
+			$this->form_validation->set_rules('password', 'Password', 'required',
+				array(
+					'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
+				));
+			$this->form_validation->set_rules('passwordkon', 'Password Konfirmasi', 'required|matches[password]',
+				array(
+					'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!',
+					'matches'		=> 'kolom %s tidak cocok dengan kolom Password'
+				));
+			$this->form_validation->set_rules('nama_perusahaan', 'Nama Perusahaan', 'required',
+				array(
+					'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
+				));
+			$this->form_validation->set_rules('no_telp', 'No Telepon', 'required|numeric',
+				array(
+					'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!',
+					'numeric'		=> 'kolom %s hanya boleh diisi angka'
+				));
+			$this->form_validation->set_rules('fax', 'Fax', 'required|numeric',
+				array(
+					'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!',
+					'numeric'		=> 'kolom %s hanya boleh diisi angka'
+				));
+			$this->form_validation->set_rules('email', 'Email', 'required',
+				array(
+					'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
+				));
+			$this->form_validation->set_rules('alamat', 'Alamat', 'required',
+				array(
+					'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
+				));
+			$this->form_validation->set_rules('website', 'Website', 'required',
+				array(
+					'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!'
+				));
+			$this->form_validation->set_rules('visi', 'Visi', 'required|min_length[10]',
+				array(
+					'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!',
+					'min_length' => 'kolom %s diisi min 10 karakter!!!!!!!'
+				));
+			$this->form_validation->set_rules('misi', 'Misi', 'required|min_length[15]',
+				array(
+					'required' 		=> 'kolom %s tidak boleh kosong!!!!!!!',
+					'min_length' => 'kolom %s diisi min 15 karakter!!!!!!!'
+				));
 
-}
+		}
 
 
 
@@ -129,7 +146,7 @@ $this->form_validation->set_rules('misi', 'Misi', 'required',
 			}
 		}
 
-	
+
 	}
 
 	public function cek_login()
@@ -170,9 +187,9 @@ $this->form_validation->set_rules('misi', 'Misi', 'required',
 				} else if ($this->session->userdata('level') == 2) {
 					redirect('perusahaan');
 				} else if ($this->session->userdata('level') == 3) {
-					redirect('member/profile/'.$this->session->userdata("id"));
+					redirect('member');
 				} else if ($this->session->userdata('level') == 4) {
-					redirect('member/profile/'.$this->session->userdata("id"));
+					redirect('member');
 				} else if($this->session->userdata('level') == 5) {
 					redirect('owner');
 				} else {

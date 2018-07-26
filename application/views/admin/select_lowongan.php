@@ -11,7 +11,6 @@
                     <li class="active">Lowongan</li>
                 </ol>
             </div>
-            <a href="insert_jenis_perusahaan" class="btn btn-primary">Tambah</a>
         </div>
         
 		<div class="row">
@@ -21,28 +20,23 @@
 	                    <table class="table" id="myTable">
 	                        <thead>
 	                            <tr>
+	                                <th>Tanggal Post</th>
 	                                <th>Lowongan</th>
 	                                <th>Deskripsi</th>
 	                                <th>Persyaratan</th>
-	                                <th>Id Perusahaan</th>
-	                                <th>Tanggal Post</th>
+	                                <th>Perusahaan</th>
 	                                <th>Status</th>
-	                                <th>Aksi</th>
 	                            </tr>
 	                        </thead>
 	                        <tbody>
 	                        <?php foreach ($lowongan as $key): ?>
 	                            <tr>
+	                                <td><?php echo $key->tanggal_post; ?></td>
 	                                <td><?php echo $key->lowongan; ?></td>
 	                                <td><?php echo $key->deskripsi; ?></td>
 	                                <td><?php echo $key->persyaratan; ?></td>
-	                                <td><?php echo $key->id_perusahaan; ?></td>
-	                                <td><?php echo $key->tanggal_post; ?></td>
+	                                <td><?php echo $key->nama_perusahaan; ?></td>
 	                                <td><?php echo $key->status; ?></td>
-	                                <td>
-	                                	<a href="admin/update_jenis_perusahaan/<?php echo $key->id_lowongan ?>" class="btn btn-primary">Edit</a>
-										<a href="delete_lowongan/<?php echo $key->id_lowongan ?>" class="btn btn-danger">Hapus</a>
-									</td>
 	                            </tr>
 	                        <?php endforeach ?>
 	                        </tbody>

@@ -24,7 +24,7 @@
 							<tr>
 								<td>Nama</td>
 								<td>:</td>
-								<td><input type="text" name="nama" class="form-control" style="width: 500px;" value="<?php echo $detail[0]->nama_member; ?>"></td>
+								<td><input type="text" name="nama" autofocus="" class="form-control" style="width: 500px;" value="<?php echo set_value('nama', $detail[0]->nama_member); ?>"></td>
 							</tr>
 							<tr>
 								<td>Jenis Kelamin</td>
@@ -43,7 +43,7 @@
 							<tr>
 								<td>Tanggal Lahir</td>
 								<td>:</td>
-								<td><input type="date" name="tanggal_lahir" class="form-control" style="width: 500px;" value="<?php echo $detail[0]->tanggal_lahir; ?>"></td>
+								<td><input type="date" name="tanggal_lahir" class="form-control" style="width: 500px;" value="<?php echo set_value('tanggal_lahir', $detail[0]->tanggal_lahir); ?>"></td>
 							</tr>
 							<tr>
 								<td>Agama</td>
@@ -60,28 +60,38 @@
 							<tr>
 								<td>Alamat</td>
 								<td>:</td>
-								<td><input type="text" name="alamat" class="form-control" style="width: 800px;" value="<?php echo $detail[0]->alamat; ?>"></td>
+								<td><input type="text" name="alamat" class="form-control" style="width: 800px;" value="<?php echo set_value('alamat', $detail[0]->alamat); ?>"></td>
 							</tr>
 							<tr>
 								<td>No Telp</td>
 								<td>:</td>
-								<td><input type="text" name="no_telp" class="form-control" style="width: 500px;" value="<?php echo $detail[0]->no_telp; ?>"></td>
+								<td><input type="text" name="no_telp" class="form-control" style="width: 500px;" value="<?php echo set_value('no_telp', $detail[0]->no_telp); ?>"></td>
 							</tr>
 							<tr>
 								<td>Email</td>
 								<td>:</td>
-								<td><input type="text" name="email" class="form-control" style="width: 500px;" value="<?php echo $detail[0]->email; ?>"></td>
+								<td><input type="text" name="email" class="form-control" style="width: 500px;" value="<?php echo set_value('email', $detail[0]->email); ?>"></td>
+							</tr>
+							<tr>
+								<td>Type User</td>
+								<td>:</td>
+								<td>
+									<input type="radio" name="type_user" value="3" <?= ($detail[0]->id_level==3) ? 'checked' : '' ; ?>/>
+					                <label class="gender">Non Premium</label>
+					                <input type="radio" name="type_user" value="4" <?= ($detail[0]->id_level==4) ? 'checked' : '' ; ?>/>
+					                <label class="gender">Premium</label>
+								</td>
 							</tr>
 							<tr>
 								<td>Username</td>
 								<td>:</td>
-								<td><input type="text" name="username" class="form-control" style="width: 500px;" value="<?php echo $detail[0]->username; ?>"></td>
+								<td><input type="text" name="username" class="form-control" style="width: 500px;" value="<?php echo set_value('username', $detail[0]->username); ?>"></td>
 							</tr>
-							<tr>
+							<!-- <tr>
 								<td>Password</td>
 								<td>:</td>
-								<td><input type="password" name="password" class="form-control" style="width: 500px;" value="<?php echo $detail[0]->password; ?>"></td>
-							</tr>
+								<td><input type="text" name="password" class="form-control" style="width: 500px;" value="<?php echo md5($detail[0]->password); ?>"></td>
+							</tr> -->
 							<tr>
 								<td>Foto</td>
 								<td>:</td>

@@ -39,6 +39,9 @@
 <body>
 	
 	<div class="limiter">
+		<?php if($this->session->flashdata('user_loggedout')): ?>
+     	<?php echo '<p class="alert alert-success">'.$this->session->flashdata('user_loggedout').'</p>'; ?>
+   		<?php endif; ?>
 		<div class="container-login100" style="background-image: url('<?php echo base_url() ?>assets/images/bg-01.jpg');">
 			<div class="wrap-login100">
 				<div class="text-center text-danger btn-danger">
@@ -54,7 +57,7 @@
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Enter username">
-						<input class="input100" type="text" name="username" placeholder="Username">
+						<input class="input100" type="text" name="username" placeholder="Username" autofocus="">
 						<span class="focus-input100" data-placeholder="&#xf207;"></span>
 					</div>
 
@@ -71,6 +74,10 @@
 						<button class="login100-form-btn" name="login" type="submit">
 							Login
 						</button>
+					</div>
+					<br>
+					<div class="container-login100-form-btn">
+						<a href="<?php echo base_url('visitor') ?>" class="btn btn-danger login100-form-btn">kembali</a>
 					</div>
 
 					<div class="text-center">

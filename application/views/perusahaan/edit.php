@@ -10,28 +10,28 @@
 					<td>Lowongan</td>
 					<td>:</td>
 					<td>
-						<input type="text" name="lowongan" id="inputLowongan" class="form-control" required="required" value="<?php echo $detail[0]->lowongan ?>">
+						<input type="text" name="lowongan" id="inputLowongan" autofocus="" class="form-control" value="<?php echo set_value('lowongan', $detail[0]->lowongan); ?>">
 					</td>
 				</tr>
 				<tr>
 					<td>Deskripsi</td>
 					<td>:</td>
 					<td>
-						<textarea name="deskripsi" class="form-control"><?php echo $detail[0]->deskripsi ?></textarea>
+						<textarea name="deskripsi" class="form-control"><?php echo set_value('deskripsi', $detail[0]->deskripsi); ?></textarea>
 					</td>
 				</tr>
 				<tr>
 					<td>Persyaratan</td>
 					<td>:</td>
 					<td>
-						<textarea name="persyaratan" class="form-control"><?php echo $detail[0]->persyaratan ?></textarea>
+						<textarea name="persyaratan" class="form-control"><?php echo set_value('persyaratan', $detail[0]->persyaratan); ?></textarea>
 					</td>
 				</tr>
 				<tr>
 					<td>Jumlah</td>
 					<td>:</td>
 					<td>
-						<input type="text" name="jumlah" id="inputJumlah" class="form-control" required="required" value="<?php echo $detail[0]->jumlah ?>">
+						<input type="text" name="jumlah" id="inputJumlah" class="form-control" value="<?php echo set_value('jumlah', $detail[0]->jumlah); ?>">
 					</td>
 				</tr>
 				<tr>

@@ -54,18 +54,20 @@
         <nav class="navbar navbar-default navbar-static-top m-b-0">
             <div class="navbar-header"> <a class="navbar-toggle hidden-sm hidden-md hidden-lg " href="<?php echo base_url() ?>javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse"><i class="fa fa-bars"></i></a>
                 <div class="top-left-part"><a class="logo" href="admin"><b><img src="<?php echo base_url() ?>assets/images/loker.png" alt="home" width="120px" height="50px" /></b></a></div>
-                <ul class="nav navbar-top-links navbar-left m-l-20 hidden-xs">
-                    <li>
-                        <form role="search" class="app-search hidden-xs">
-                            <input type="text" placeholder="Search..." class="form-control"> <a href=""><i class="fa fa-search"></i></a>
-                        </form>
-                    </li>
-                </ul>
                 <ul class="nav navbar-top-links navbar-right pull-right">
                     <li>
-                        <a class="profile-pic" href="<?php echo base_url() ?>login/logout"><b class="hidden-xs">Logout</b> </a>
+                        <a class="profile-pic" href="<?php echo base_url() ?>login/logout"><b class="hidden-xs">Hi <?php echo $this->session->userdata('username'); ?>,Logout</b> </a>
                     </li>
                 </ul>
+                <?php if($this->session->flashdata('user_loggedin')): ?>
+        <?php echo '<p class="alert alert-success">'.$this->session->flashdata('user_loggedin').'</p>'; ?>
+        <?php endif; ?>
+        <?php if($this->session->flashdata('login_failed')): ?>
+            <?php echo '<p class="alert alert-danger">'.$this->session->flashdata('login_failed').'</p>'; ?>
+        <?php endif; ?>
+        <?php if($this->session->flashdata('user_loggedout')): ?>
+            <?php echo '<p class="alert alert-success">'.$this->session->flashdata('user_loggedout').'</p>'; ?>
+        <?php endif; ?>
             </div>
             <!-- /.navbar-header -->
             <!-- /.navbar-top-links -->
@@ -96,13 +98,4 @@
                 </ul>
             </div>
         </div>
-        <?php if($this->session->flashdata('user_loggedin')): ?>
-        <?php echo '<p class="alert alert-success">'.$this->session->flashdata('user_loggedin').'</p>'; ?>
-        <?php endif; ?>
-        <?php if($this->session->flashdata('login_failed')): ?>
-            <?php echo '<p class="alert alert-danger">'.$this->session->flashdata('login_failed').'</p>'; ?>
-        <?php endif; ?>
-        <?php if($this->session->flashdata('user_loggedout')): ?>
-            <?php echo '<p class="alert alert-success">'.$this->session->flashdata('user_loggedout').'</p>'; ?>
-        <?php endif; ?>
         <!-- Left navbar-header end -->

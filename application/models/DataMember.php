@@ -8,6 +8,7 @@ class DataMember extends CI_Model {
 		$this->db->select('*');
 		$this->db->from('member');
 		$this->db->join('user', 'member.fk_user = user.id_user');
+		$this->db->join('level', 'user.id_level = level.id_level');
 		$this->db->where('member.fk_user='.$fk);
 		return $this->db->get()->result();
 	}
@@ -37,6 +38,35 @@ class DataMember extends CI_Model {
 			$return = array('result' => 'failed', 'file' => '', 'error' => $this->upload->display_errors());
 			return $return;
 		}
+	}
+
+	public function uploadCV()
+	{
+		$config['upload_path'] = './upload/cv/';
+		$config['allowed_types'] = 'pdf';
+		$config['remove_space']  = TRUE;
+		
+		$this->load->library('upload', $config);
+		
+		if ($this->upload->do_upload('cv')){
+			$return = array('result' => 'success', 'file' => $this->upload->data(), 'error' => '');
+			return $return;
+		} else {
+			$return = array('result' => 'failed', 'file' => '', 'error' => $this->upload->display_errors());
+			return $return;
+		}
+	}
+
+	public function daftarLowongan($uploadCV, $id_member, $id_lowongan)
+	{
+		$data = array(
+			'id_member' 	=> $id_member,
+			'id_lowongan'	=> $id_lowongan,
+			'cv'			=> $uploadCV['file']['file_name'],
+			'tanggal_daftar'=> date('Y-m-d'),
+			'status_daftar'		=> 'baru'
+		);
+		$this->db->insert('pendaftar', $data);
 	}
 
 	public function update($upload, $id, $fk_user)
@@ -70,8 +100,7 @@ class DataMember extends CI_Model {
 	public function update_akun($fk_user)
 	{
 		$data = array(
-			'username'	=> $this->input->post('username'),
-			'password'	=> $this->input->post('password')
+			'username'	=> $this->input->post('username')
 		);
 		$this->db->where('id_user', $fk_user);
 		$this->db->update('user', $data);
@@ -107,33 +136,22 @@ class DataMember extends CI_Model {
 		$this->db->select('*');
 		$this->db->from('lowongan');
 		$this->db->join('perusahaan', 'lowongan.id_perusahaan = perusahaan.id_perusahaan');
-		$this->db->order_by('id_lowongan', 'desc');
+		$this->db->order_by('id_lowongan', 'asc');
+		$this->db->where('status', 'buka');
 		return $this->db->get()->result();
 	}
 
-	public function get_lowongan_perusahaan($limit = FALSE, $offset = FALSE, $id)
-	{
-		if ($limit) {
-			$this->db->limit($limit, $offset);
-		}
-		$this->db->select('*');
-		$this->db->from('lowongan');
-		$this->db->join('perusahaan', 'lowongan.id_perusahaan = perusahaan.id_perusahaan');
-		$this->db->where('lowongan.id_perusahaan', $id);
-		$this->db->order_by('id_lowongan', 'desc');
-		return $this->db->get()->result();
-	}
 
 	public function get_total_lowongan()
 	{
 		return $this->db->count_all("lowongan");
 	}
 
-	public function get_total_lowongan_perusahaan($id)
-	{
-		$this->db->where('id_perusahaan', $id);
-		return $this->db->count_all("lowongan");
-	}
+	// public function get_total_lowongan_perusahaan($id)
+	// {
+	// 	$this->db->where('id_perusahaan', $id);
+	// 	return $this->db->count_all("lowongan");
+	// }
 
 	public function get_single_lowongan($id)
 	{
@@ -142,6 +160,26 @@ class DataMember extends CI_Model {
 		$this->db->join('perusahaan', 'lowongan.id_perusahaan = perusahaan.id_perusahaan');
 		$this->db->where('lowongan.id_lowongan', $id);
 		return $this->db->get()->result();
+	}
+
+	public function pendaftar($id)
+	{
+		
+		$this->db->select('*');
+		$this->db->from('pendaftar');
+		$this->db->join('lowongan', 'lowongan.id_lowongan = pendaftar.id_lowongan');
+		$this->db->join('perusahaan', 'lowongan.id_perusahaan = perusahaan.id_perusahaan');
+		$this->db->where('pendaftar.id_member', $id);
+		return $this->db->get()->result();
+	}
+
+	public function update_foto($id)
+	{
+		$data = array(
+			'foto_member'	=> 'user_icon.png'
+		);
+		$this->db->where('fk_user', $id);
+		$this->db->update('member', $data);
 	}
 
 }

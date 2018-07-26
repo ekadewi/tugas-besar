@@ -3,7 +3,7 @@
 	<div class="container text-center">
 	</div>
 	<div class="container-fluid">
-		<a href="<?php echo base_url() ?>perusahaan/tambah/<?php echo $lowongan[0]->id_perusahaan ?>" class="btn btn-primary">Tambah</a>
+		<a href="<?php echo base_url() ?>perusahaan/tambah/<?php echo $perusahaan[0]->id_perusahaan ?>" class="btn btn-primary">Tambah</a>
 		<div class="col-md-12 animate-box">
 			<table class="table table-bordered" id="myTable">
 				<thead>

@@ -50,7 +50,7 @@
 	                                	<img src="../upload/<?php echo $key->foto;?>" alt="Image" width="50" height="50">
 	                                </td>
 	                                <td>
-	                                	<a href="admin/update_jenis_perusahaan/<?php echo $key->id_perusahaan ?>" class="btn btn-primary">Edit</a>
+	                                	<a href="update_perusahaan/<?php echo $key->id_perusahaan ?>" class="btn btn-primary">Edit</a>
 										<a href="delete_perusahaan/<?php echo $key->id_perusahaan ?>" class="btn btn-danger">Hapus</a>
 									</td>
 	                            </tr>

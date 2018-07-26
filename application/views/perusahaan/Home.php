@@ -7,6 +7,10 @@
 			<br>
 			Berdiri sejak <?php echo $profile[0]->tahun_berdiri; ?>
 		</p>
+		<p>
+			<a href="<?php echo base_url('perusahaan/update/'.$this->session->userdata('id')) ?>" class="btn btn-primary"><i class="icon-edit"></i>Edit</a>
+			<a href="<?php echo base_url('perusahaan/update_foto/'.$this->session->userdata('id')) ?>" class="btn btn-primary"><i class="icon-camera"></i>Hapus Foto</a>
+		</p>
 	</div>	
 	<div class="container">
 		<div class="col-md-12 animate-box">

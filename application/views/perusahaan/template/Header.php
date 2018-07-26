@@ -82,13 +82,13 @@
 	<header id="fh5co-header" role="banner">
 		<div class="container">
 			<div class="header-inner">
-				<a href="index.html"><img src="<?php echo base_url() ?>assets/images/loker.png" width="100" height="80"></a>
+				<a href="<?php echo base_url('perusahaan/profile/'.$this->session->userdata('id')) ?>"><img src="<?php echo base_url() ?>assets/images/loker.png" width="100" height="80"></a>
 				<nav role="navigation">
 					<ul>
-						<li><a href="work.html">Beranda</a></li>
+						<li><a href="<?php echo base_url('perusahaan')?>">Beranda</a></li>
 						<li><a href="<?php echo base_url('perusahaan/profile/'.$this->session->userdata('id')) ?>">Profile</a></li>
 						<li><a href="<?php echo base_url('perusahaan/lowongan/'.$this->session->userdata('id')) ?>">Lowongan</a></li>
-						<li><a href="about.html">Pendaftar</a></li>
+						<li><a href="<?php echo base_url('perusahaan/pendaftar/'.$this->session->userdata('id')) ?>">Pendaftar</a></li>
 						<li class="cta"><a href="<?php echo base_url() ?>login/logout">Logout</a></li>
 					</ul>
 				</nav>
@@ -97,22 +97,24 @@
 	</header>
 	
 
-	<aside id="fh5co-hero" class="js-fullheight">
-		<div class="flexslider js-fullheight">
-			<ul class="slides">
-		   	<li style="background-image: url(<?php echo base_url() ?>assets/images/banner.jpg);">
-		   		<div class="overlay-gradient"></div>
-		   		<div class="container">
-		   			<div class="col-md-10 col-md-offset-1 text-center js-fullheight slider-text">
-		   				<div class="slider-text-inner">
-		   					<h2 style="color: black;">Share Your Vacancy</h2>
-		   					<p class="fh5co-lead" style="color: black;">Get Your Worker <i class="icon-heart"></i></p>
-		   				</div>
-		   			</div>
-		   		</div>
-		   	</li>
-		  	</ul>
-	  	</div>
-	</aside>
+	<?php if ($this->uri->segment(2)==''): ?>
+		<aside id="fh5co-hero" class="js-fullheight">
+			<div class="flexslider js-fullheight">
+				<ul class="slides">
+			   	<li style="background-image: url(<?php echo base_url() ?>assets/images/banner.jpg);">
+			   		<div class="overlay-gradient"></div>
+			   		<div class="container">
+			   			<div class="col-md-10 col-md-offset-1 text-center js-fullheight slider-text">
+			   				<div class="slider-text-inner">
+			   					<h2 style="color: black;">Share Your Vacancy</h2>
+			   					<p class="fh5co-lead" style="color: black;">Get Your Worker <i class="icon-heart"></i></p>
+			   				</div>
+			   			</div>
+			   		</div>
+			   	</li>
+			  	</ul>
+		  	</div>
+		</aside>
+	<?php endif ?>
 	
    </div>

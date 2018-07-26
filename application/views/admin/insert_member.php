@@ -23,7 +23,7 @@
 							<tr>
 								<td>Nama</td>
 								<td>:</td>
-								<td><input type="text" name="nama" style="width: 500px;" value="<?php echo set_value('nama'); ?>"></td>
+								<td><input type="text" name="nama" autofocus="" style="width: 500px;" value="<?php echo set_value('nama'); ?>"></td>
 							</tr>
 							<tr>
 								<td>Jenis Kelamin</td>
@@ -66,6 +66,16 @@
 								<td>Email</td>
 								<td>:</td>
 								<td><input type="text" name="email" style="width: 500px;" value="<?php echo set_value('email'); ?>"></td>
+							</tr>
+							<tr>
+								<td>Type User</td>
+								<td>:</td>
+								<td>
+									<input type="radio" name="type_user" value="3"/>
+					                <label class="gender">Non Premium</label>
+					                <input type="radio" name="type_user" value="4"/>
+					                <label class="gender">Premium</label>
+								</td>
 							</tr>
 							<tr>
 								<td>Username</td>

@@ -59,6 +59,15 @@
                         <a class="profile-pic" href="<?php echo base_url() ?>login/logout"><b class="hidden-xs">Logout</b> </a>
                     </li>
                 </ul>
+                <?php if($this->session->flashdata('user_loggedin')): ?>
+                <?php echo '<p class="alert alert-success">'.$this->session->flashdata('user_loggedin').'</p>'; ?>
+                <?php endif; ?>
+                <?php if($this->session->flashdata('login_failed')): ?>
+                    <?php echo '<p class="alert alert-danger">'.$this->session->flashdata('login_failed').'</p>'; ?>
+                <?php endif; ?>
+                <?php if($this->session->flashdata('user_loggedout')): ?>
+                    <?php echo '<p class="alert alert-success">'.$this->session->flashdata('user_loggedout').'</p>'; ?>
+                <?php endif; ?>
             </div>
             <!-- /.navbar-header -->
             <!-- /.navbar-top-links -->
@@ -74,13 +83,5 @@
                 </ul>
             </div>
         </div>
-        <?php if($this->session->flashdata('user_loggedin')): ?>
-        <?php echo '<p class="alert alert-success">'.$this->session->flashdata('user_loggedin').'</p>'; ?>
-        <?php endif; ?>
-        <?php if($this->session->flashdata('login_failed')): ?>
-            <?php echo '<p class="alert alert-danger">'.$this->session->flashdata('login_failed').'</p>'; ?>
-        <?php endif; ?>
-        <?php if($this->session->flashdata('user_loggedout')): ?>
-            <?php echo '<p class="alert alert-success">'.$this->session->flashdata('user_loggedout').'</p>'; ?>
-        <?php endif; ?>
+        
         <!-- Left navbar-header end -->

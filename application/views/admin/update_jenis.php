@@ -24,7 +24,7 @@
 							<tr>
 								<td>Jenis Perusahaan</td>
 								<td>:</td>
-								<td><input type="text" name="nama" value="<?php echo $key->jenis_perusahaan; ?>" style="width: 500px;"></td>
+								<td><input type="text" name="nama" autofocus="" value="<?php echo set_value('nama', $key->jenis_perusahaan); ?>" style="width: 500px;"></td>
 							</tr>
 							<tr class="text-center">
 								<td colspan="3"><input type="submit" name="update" value="Edit" class="btn btn-primary"></td>
